@@ -11,6 +11,14 @@ import { Link, useLocation } from "react-router-dom";
 import { toogleAuth } from "../Redux/Reducer/AuthReducer";
 import { useDispatch } from "react-redux";
 
+import { ReactComponent as Logo } from "../../Assets/logo.svg";
+import WalletIcon from "../../Assets/wallet.svg";
+import WalletIconDark from "../../Assets/wallet-dark.svg";
+import TreeIcon from "../../Assets/tree.svg";
+import TreeIconDark from "../../Assets/tree-dark.svg";
+import UplineIcon from "../../Assets/upline.svg";
+import UplineIconDark from "../../Assets/upline-dark.svg";
+
 function Sidenavbar() {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -28,10 +36,10 @@ function Sidenavbar() {
     <div className="sidenav">
       <div className="sidebarcontainer">
         <div className="menu">
-          <div className="logodiv">Smart Genie</div>
-          <div className="hlinediv">
-            <div className="hline"></div>
+          <div className="logodiv">
+            <Logo className="logoimg" />
           </div>
+
           <ul className="sidebarlist">
             <Link
               className={VALIDROUTE("/") ? "Link-Active" : "Link"}
@@ -52,21 +60,21 @@ function Sidenavbar() {
                 <span className="icon">
                   {!VALIDROUTE("/") ? (
                     <img
-                      src="https://uploads-ssl.webflow.com/5c30d30a32c1877cbb03e545/5c56c4a24ed7964135f087b1_Account%20dark.svg"
-                      width="24"
+                      src={WalletIconDark}
+                      width="32"
                       alt=""
                       class="sidemenu_button_icon"
                     />
                   ) : (
                     <img
-                      src="https://uploads-ssl.webflow.com/5c30d30a32c1877cbb03e545/5c3f8723a6538c3f77d63a3c_Account.png"
-                      width="24"
+                      src={WalletIcon}
+                      width="32"
                       alt=""
                       class="sidemenu_button_icon"
                     />
                   )}
                 </span>
-                Control Panel
+                Dashboard
               </li>
             </Link>
 
@@ -88,9 +96,9 @@ function Sidenavbar() {
               >
                 <span className="icon">
                   {!VALIDROUTE("/partners") ? (
-                    <img src="https://img.icons8.com/small/24/000000/tree-structure.png" />
+                    <img src={TreeIconDark} width="32" />
                   ) : (
-                    <img src="https://img.icons8.com/small/24/ffffff/tree-structure.png" />
+                    <img src={TreeIcon} width="32" />
                   )}
                 </span>
                 Partners
@@ -114,9 +122,9 @@ function Sidenavbar() {
               >
                 <span className="icon">
                   {!VALIDROUTE("/uplines") ? (
-                    <img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/24/000000/external-users-cv-resume-flatart-icons-outline-flatarticons.png" />
+                    <img src={UplineIconDark} width="32" />
                   ) : (
-                    <img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/24/ffffff/external-users-cv-resume-flatart-icons-outline-flatarticons.png" />
+                    <img src={UplineIcon} width="32" />
                   )}
                 </span>
                 Uplines
@@ -157,30 +165,30 @@ function Sidenavbar() {
               </span>
               promo
             </li> */}
-
-            <Link
-              onClick={Logout}
-              className={"Link"}
-              to="/"
-              style={{
-                width: "240px !important",
-                textDecoration: "none",
-                color: "black",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <li className="sidebaritems">
-                <span className="icon">
-                  <BsBoxArrowRight size={24} />
-                </span>
-                Logout
-              </li>
-            </Link>
           </ul>
         </div>
       </div>
+      <Link
+        onClick={Logout}
+        className={"Link"}
+        to="/"
+        style={{
+          width: "240px !important",
+          textDecoration: "none",
+          color: "black",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <li
+          
+          className="sidebaritems logoutItem"
+        >
+          Logout
+        </li>
+      </Link>
     </div>
   );
 }

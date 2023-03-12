@@ -12,6 +12,7 @@ const App = () => {
   const authStatus = useSelector(getAuth);
  
 
+  
   // useEffect(() => {
   //   if (authStatus == "LOGGEDOUT") {
   //     if (window.location.pathname != "/") {

@@ -5,6 +5,8 @@
   position: fixed;
   top: 0;
   z-index: 100000;
+  border-bottom: 2px #F3F3F3 solid;
+
 }
 
 .topbarcontainer {

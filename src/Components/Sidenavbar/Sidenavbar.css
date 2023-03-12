@@ -1,10 +1,15 @@
 .sidenav {
-  width: 240px;
+  width: 350px;
   height: 100%;
   overflow: hidden;
   position: sticky;
   top: 50px;
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  padding-inline: 30px;
+  border-right: 2px #F3F3F3 solid;
 }
 
 .sidebarcontainer {
@@ -28,21 +33,9 @@
   align-items: center;
 }
 
-.hlinediv {
-  width: 100%;
-  height: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-}
-.hline {
-  width: 80%;
-  height: 1px;
-  background-color: #b6bed63c;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.logoimg {
+  width: 75%;
+  height: auto;
 }
 
 .sidebarlist {
@@ -53,8 +46,8 @@
 
 .sidebaritems {
   cursor: pointer;
-  color: black;
-  height: 53px;
+  color: #878787;
+  height: 60px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -64,6 +57,7 @@
   text-decoration: none;
   text-transform: uppercase;
   transition: background-color 200ms ease;
+  font-weight: bold;
 }
 
 .Link-Active {
@@ -75,13 +69,47 @@
     to(#442fe7)
   );
   background-image: linear-gradient(90deg, #a348f6, #442fe7);
+  border-radius: 18px;
+  margin-block: 0.5rem;
+}
 
+.Link {
+  margin-block: 0.5rem;
 }
 
 .Link:hover {
   background-color: rgba(185, 182, 182, 0.164);
   transition: background-color 200ms ease;
+  border-radius: 18px;
 }
 .icon {
   margin-right: 10px;
+}
+
+.logoutItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fddfe3;
+  color: #f65e72;
+  width: 100%;
+  border-radius: 18px;
+  margin-block: 0.5rem;
+  font-weight: bolder;
+  /* border: 2px solid #f65e72; */
+}
+
+.logoutItem:hover {
+  color: white;
+  background-color: #f65e72;
+}
+
+@media only screen and (max-width: 839px) {
+  .sidenav {
+    padding-inline: 0px !important;
+  }
+
+  .logoimg {
+    width: 50%;
+  }
 }

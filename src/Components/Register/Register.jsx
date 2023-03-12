@@ -213,7 +213,6 @@ const Register = () => {
 
   return (
     <div className="Login-Main">
-      <Toaster />
       <div className={"Inside"}>
         <div className="Logo-Div">
           <img src={Logo} />
