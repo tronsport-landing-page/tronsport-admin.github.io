@@ -1,0 +1,111 @@
+.level {
+  display: flex;
+  background-color: white;
+  overflow: hidden;
+  max-width: 1200px;
+  margin-left: 20px;
+  box-shadow: 0 2px 10px 0 rgb(0 0 0 / 5%);
+  border-radius: 2px;
+  
+
+}
+.row1 {
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.spl {
+  color: red;
+  font-weight: bold;
+}
+
+.levelval {
+  font-size: large;
+  font-family: "Inter custom", sans-serif;
+  cursor: default;
+}
+
+.btn {
+  width: 195px;
+  height: 40px;
+  border-radius: 10px;
+  border-color: None;
+  border: none;
+  background-color: #535fe8;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  color: white;
+  /* border: 2px solid #ea4a70; */
+}
+
+.btn p {
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+margin: 0;
+  transition: background-color 200ms ease;
+
+}
+
+.btn:hover {
+  background-color: rgb(97, 106, 230);
+  transition: background-color 200ms ease;
+
+}
+
+.days {
+  /* color: rgba(0, 0, 0, 0.288); */
+  color: #ea4a6f;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.lvl {
+  color: #333352;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.line {
+  border: none;
+  border-top: 1px dotted rgba(0, 0, 0, 0.205);
+  margin-block: 10px;
+}
+
+.card {
+  background-color: white;
+  /* border: 2px solid #ea4a6f; */
+  margin-right: 20px;
+  height: 200px;
+  width: 260px;
+  min-width: 260px;
+  box-shadow: 0 2px 50px 0 rgb(0 0 0 / 5%);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 20px;
+
+}
+
+.card-expired {
+  background-color: #ea4a6f31;
+  border: 2px solid #ea4a6f;
+  margin-right: 20px;
+  height: 200px;
+  width: 260px;
+  min-width: 260px;
+  box-shadow: 0 2px 50px 0 rgb(0 0 0 / 5%);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 20px;
+
+}

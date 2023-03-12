@@ -1,0 +1,1 @@
+export const Hex_to_base58 = async(string)=> window?.tronWeb?.address?.fromHex(string)

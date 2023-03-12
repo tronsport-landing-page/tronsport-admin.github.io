@@ -1,0 +1,22 @@
+
+
+
+
+.Tree{
+    transition: all 0.1s all;
+    margin-left:-25px
+    
+}
+
+.TreeDiv{
+    overflow: scroll !important;
+}
+
+.Tree ul{
+    list-style: none;
+    margin-left: 0;
+    transition: all 0.1s all;
+    line-height: 25px;
+    text-transform: uppercase;
+}
+

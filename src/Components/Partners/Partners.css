@@ -1,0 +1,274 @@
+.panel {
+  padding: 0px 40px 250px 20px;
+  overflow: hidden;
+}
+
+.header {
+  font-weight: normal;
+  margin-left: 20px;
+  margin-block: 32px;
+  font-family: Montserrat, sans-serif;
+  color: #131339;
+  font-size: 30px;
+  line-height: 24px;
+  font-weight: 700;
+}
+.ph2 {
+  margin-left: 500px;
+  color: rgba(0, 0, 0, 0.582);
+  font-size: large;
+}
+
+.pnoti {
+  margin-right: 7px;
+}
+
+.ph1 {
+  text-align: center;
+  margin-left: 600px;
+  font-size: larger;
+}
+
+.pheading {
+  margin-left: 20px;
+  font-size: 30px;
+}
+
+.linkbox {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  background-color: transparent;
+  margin-left: 20px;
+  overflow: hidden;
+}
+
+.linkbox p {
+  margin: 0;
+}
+
+.linkInside {
+  width: 620px;
+  height: fit-content;
+  border: 1px transparent;
+  border-right-width: 1px;
+  border-right-color: #ededed;
+  border-style: solid;
+  box-shadow: 0 2px 10px 0 rgb(0 0 0 / 5%);
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: white;
+  box-shadow: 0 2px 10px 0 rgb(0 0 0 / 5%);
+  padding-inline: 30px;
+  padding-block: 20px;
+}
+
+.copybtn {
+  background-color: rgba(0, 0, 255, 0.699);
+  color: white;
+  text-align: center;
+  width: 102%;
+  border-radius: 11px;
+  height: 40px;
+  font-size: large;
+  border: none;
+  font-weight: bold;
+}
+
+.copybtn2 {
+  background-color: rgba(0, 0, 255, 0.699);
+  color: white;
+  text-align: center;
+  width: 800px;
+  height: 40px;
+  font-size: large;
+}
+
+.linkname {
+  color: black;
+  font-weight: bold;
+  font-size: 15px;
+  margin-left: 20px;
+}
+
+.linkname1 {
+  color: #333352;
+  font-weight: bold;
+  font-size: 18px;
+  width: 100%;
+  text-align: left;
+}
+
+.links {
+  border: rgba(0, 0, 0, 0.116) 2px solid;
+  padding: 2px;
+}
+
+.link1 {
+  border: rgba(0, 0, 0, 0.116) 2px solid;
+  height:40px !important;
+  width: 97%;
+  border: 1px #ededed solid;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+
+
+.link2 {
+  border: rgba(0, 0, 0, 0.116) 2px solid;
+  height: 40px;
+  width: 70%;
+  border: 1px #ededed solid;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.linkInside .Inline {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.linkInside .Inline .copybtn {
+  background-color: rgba(0, 0, 255, 0.699);
+  color: white;
+  text-align: center;
+  width: 130px;
+  border-radius: 11px;
+  height: 40px;
+  font-size: large;
+  border: none;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.PartnerList {
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 15px;
+  padding-inline: 10px;
+}
+
+.TreeDiv {
+  width: 100%;
+  min-height: 150px;
+}
+
+.structure {
+  background-color: white;
+  margin-left: 20px;
+  padding-right: 30px;
+  padding-top: 5px;
+  padding-bottom: 20px;
+  margin-top: 20px;
+  padding-left: 30px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px 0 rgb(0 0 0 / 5%);
+  overflow: hidden;
+}
+
+.con {
+  color: rgba(0, 0, 0, 0.466);
+}
+
+.TableDivWrap {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.searchinp {
+  width: 100%;
+  border: rgba(0, 0, 0, 0.116) 2px solid;
+  height: 44px;
+  border: 1px #ededed solid;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 20px;
+  outline: none;
+}
+
+.search {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.inp {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.inp .copybtn {
+  width: 120px;
+  margin-left: 15px;
+}
+
+.recdiv{
+  overflow: scroll;
+}
+
+.recdiv th,
+td {
+  background-color: white;
+  padding: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;               
+}
+
+
+::-webkit-scrollbar-track {
+  background: transparent;        
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #acb7bc;    /* color of the scroll thumb */
+  border-radius: 200vh;       /* roundness of the scroll thumb */
+  border: 3px solid transparent;  /* creates padding around scroll thumb */
+}
+
+th {
+  text-align: left;
+}
+
+th,
+td {
+  border: 1px solid rgba(0, 0, 0, 0.116);
+}
+
+table {
+  border-collapse: collapse;
+  overflow: scroll;
+}
+
+
+
+@media only screen and (max-width: 1100px) {
+.linkbox{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.linkInside,.content{
+  min-width: 50px !important;
+}
+}

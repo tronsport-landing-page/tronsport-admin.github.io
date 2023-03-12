@@ -1,0 +1,45 @@
+.Lostprofits {
+    padding: 0px 40px 250px 20px;
+    overflow: hidden;
+  }
+
+
+.Lostprofits .Table{
+    width: 100%;
+    max-width: fit-content;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    background-color: white;
+    margin-left: 20px;
+    overflow: hidden;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.Lostprofits .rec{
+    width: 100%;
+    max-width: fit-content;
+    background-color: white;
+    margin-left: 20px;
+    overflow: hidden;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+
+
+.Lostprofits .TableDivWrap{
+    width: auto;
+}
+
+@media only screen and (max-width: 919px) {
+    .Lostprofits {
+        padding: 0px 40px 250px 0px;
+        overflow: hidden;
+      }
+   
+}
+
+  
