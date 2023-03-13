@@ -17,6 +17,8 @@ import { getPreviewModeId } from "../Redux/Reducer/PreviewMode";
 import { Spinner } from "react-bootstrap";
 import { getuserId } from "../Redux/Reducer/UserId";
 
+import successIcon from "../../Assets/success.svg";
+
 const FOUNDATION_ADDRESS = "TG31Eya5GywMYV2rwq3rwGbep4eoykWREP";
 
 function Partners() {
@@ -54,13 +56,11 @@ function Partners() {
       });
   };
 
-
   const FetchTree = async (id, TREEDATA) => {
     await Utils.contract
       .viewUserReferral(id)
       .call()
       .then(async (items) => {
-
         var item = {};
 
         if (items.length > 0) {
@@ -105,7 +105,6 @@ function Partners() {
     } else {
       temp["name"] = resId;
     }
-
 
     return temp;
     // if(data[0]?.children){
@@ -326,11 +325,8 @@ function Partners() {
     // console.log(count, PartnersArray.length)
 
     if (count == PartnersArray.length) {
-      
       return await calculate_CoinsFromLevels(LevelJSON).then(async (res) => {
         return await PreProcessData(res).then((result) => {
-
-
           setTableData(result);
           setLoadingTable(false);
         });
@@ -439,12 +435,12 @@ function Partners() {
             settreeData([res]);
             setLoadingStruct(false);
 
-            return await FetchPartners(walletId,[]).then(async(TotalPartnersCount)=>{
-              // console.log(TotalPartnersCount);
-              return await FetchPayments(walletId, TotalPartnersCount.length);
-
-            })
-
+            return await FetchPartners(walletId, []).then(
+              async (TotalPartnersCount) => {
+                // console.log(TotalPartnersCount);
+                return await FetchPayments(walletId, TotalPartnersCount.length);
+              }
+            );
           });
         });
       });
@@ -564,15 +560,17 @@ function Partners() {
             <p className="linkname1">Your Affilate Link</p>
             <br />
 
-            <input
-              className="link1"
-              readOnly={true}
-              value={`${window.location.origin}/register/${userID}`}
-            />
-            <br />
-            <button onClick={copyLink} className="copybtn">
-              Copy Link
-            </button>
+            <div className="link1">
+              <img alt="" width="25" height="25" src={successIcon} />
+              <input
+                readOnly={true}
+                value={`${window.location.origin}/register/${userID}`}
+              />
+              <br />
+              <button onClick={copyLink} className="copybtn">
+                Copy Link
+              </button>
+            </div>
           </div>
         </div>
 

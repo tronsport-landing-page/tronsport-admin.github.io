@@ -1,0 +1,117 @@
+Date : 2023-03-14 00:58:56
+Directory : ./src
+Total : 70 files,  4896 codes, 769 comments, 911 blanks, all 6576 lines, 13.57% comment rate
+
+Languages
++----------------+------------+------------+------------+------------+------------+--------------+
+| language       | files      | code       | comment    | blank      | total      | comment rate |
++----------------+------------+------------+------------+------------+------------+--------------+
+| JavaScript JSX |         19 |      3,133 |        631 |        562 |      4,326 |       16.76% |
+| CSS            |         17 |      1,221 |          7 |        227 |      1,455 |        0.57% |
+| JavaScript     |         19 |        456 |        131 |        108 |        695 |       22.32% |
+| XML            |         15 |         86 |          0 |         14 |        100 |        0.00% |
++----------------+------------+------------+------------+------------+------------+--------------+
+
+Directories
++-----------------------------------------------+------------+------------+------------+------------+------------+--------------+
+| path                                          | files      | code       | comment    | blank      | total      | comment rate |
++-----------------------------------------------+------------+------------+------------+------------+------------+--------------+
+| .                                             |         70 |      4,896 |        769 |        911 |      6,576 |       13.57% |
+| Components                                    |         42 |      4,586 |        691 |        831 |      6,108 |       13.09% |
+| Components/Control_Panel                      |         10 |      1,426 |        484 |        240 |      2,150 |       25.34% |
+| Components/Partners                           |          2 |        787 |         27 |        145 |        959 |        3.32% |
+| Components/Lostprofits                        |          4 |        442 |         24 |        105 |        571 |        5.15% |
+| Components/Sidenavbar                         |          3 |        430 |         39 |         36 |        505 |        8.32% |
+| Components/Login                              |          2 |        388 |         43 |         83 |        514 |        9.98% |
+| Components/topbar                             |          2 |        238 |          1 |         44 |        283 |        0.42% |
+| Components/Uplines                            |          3 |        216 |         39 |         54 |        309 |       15.29% |
+| Components/Register                           |          1 |        214 |          9 |         44 |        267 |        4.04% |
+| Components/Tree                               |          2 |        145 |          0 |         20 |        165 |        0.00% |
+| Components/Redux                              |          6 |         98 |         25 |         37 |        160 |       20.33% |
+| Assets                                        |         14 |         85 |          0 |         14 |         99 |        0.00% |
+| Routes                                        |          2 |         83 |          4 |         21 |        108 |        4.60% |
+| Components/Redux/Reducer                      |          5 |         83 |         25 |         33 |        141 |       23.15% |
+| Components/Message                            |          2 |         78 |          0 |         10 |         88 |        0.00% |
+| Components/Promo                              |          2 |         67 |          0 |          4 |         71 |        0.00% |
+| Components/Table                              |          2 |         46 |          0 |          6 |         52 |        0.00% |
+| Tools                                         |          2 |         28 |          0 |          8 |         36 |        0.00% |
+| Utils                                         |          2 |         12 |          4 |          6 |         22 |       25.00% |
+| Components/Wallets                            |          1 |         11 |          0 |          3 |         14 |        0.00% |
++-----------------------------------------------+------------+------------+------------+------------+------------+--------------+
+
+Files
++-----------------------------------------------+----------------+------------+------------+------------+------------+--------------+
+| filename                                      | language       | code       | comment    | blank      | total      | comment rate |
++-----------------------------------------------+----------------+------------+------------+------------+------------+--------------+
+| App.css                                       | CSS            |         23 |          0 |          6 |         29 |        0.00% |
+| App.js                                        | JavaScript     |         27 |         60 |         13 |        100 |       68.97% |
+| App.test.js                                   | JavaScript     |          7 |          0 |          2 |          9 |        0.00% |
+| Assets/burn-dark.svg                          | XML            |         10 |          0 |          1 |         11 |        0.00% |
+| Assets/burn.svg                               | XML            |         10 |          0 |          1 |         11 |        0.00% |
+| Assets/logo.svg                               | XML            |         17 |          0 |          1 |         18 |        0.00% |
+| Assets/pocket1.svg                            | XML            |          5 |          0 |          1 |          6 |        0.00% |
+| Assets/pocket2.svg                            | XML            |          5 |          0 |          1 |          6 |        0.00% |
+| Assets/pocket3.svg                            | XML            |          5 |          0 |          1 |          6 |        0.00% |
+| Assets/pocket4.svg                            | XML            |          5 |          0 |          1 |          6 |        0.00% |
+| Assets/success.svg                            | XML            |          4 |          0 |          1 |          5 |        0.00% |
+| Assets/tree-dark.svg                          | XML            |          3 |          0 |          1 |          4 |        0.00% |
+| Assets/tree.svg                               | XML            |          3 |          0 |          1 |          4 |        0.00% |
+| Assets/upline-dark.svg                        | XML            |          3 |          0 |          1 |          4 |        0.00% |
+| Assets/upline.svg                             | XML            |          3 |          0 |          1 |          4 |        0.00% |
+| Assets/wallet-dark.svg                        | XML            |          6 |          0 |          1 |          7 |        0.00% |
+| Assets/wallet.svg                             | XML            |          6 |          0 |          1 |          7 |        0.00% |
+| Components/Control_Panel/Chart.css            | CSS            |          8 |          0 |          0 |          8 |        0.00% |
+| Components/Control_Panel/Chart.jsx            | JavaScript JSX |         86 |          1 |         10 |         97 |        1.15% |
+| Components/Control_Panel/Controlpanel.css     | CSS            |        281 |          0 |         39 |        320 |        0.00% |
+| Components/Control_Panel/Controlpanel.jsx     | JavaScript JSX |        576 |        480 |        108 |      1,164 |       45.45% |
+| Components/Control_Panel/Levels.css           | CSS            |         91 |          3 |         17 |        111 |        3.19% |
+| Components/Control_Panel/Levels.jsx           | JavaScript JSX |        236 |          0 |         56 |        292 |        0.00% |
+| Components/Control_Panel/Slidecontent.css     | CSS            |         11 |          0 |          3 |         14 |        0.00% |
+| Components/Control_Panel/Slidecontent.jsx     | JavaScript JSX |         23 |          0 |          1 |         24 |        0.00% |
+| Components/Control_Panel/chart2.jsx           | JavaScript JSX |         75 |          0 |          3 |         78 |        0.00% |
+| Components/Control_Panel/linechart.jsx        | JavaScript JSX |         39 |          0 |          3 |         42 |        0.00% |
+| Components/Login/Login.css                    | CSS            |        143 |          0 |         22 |        165 |        0.00% |
+| Components/Login/Login.jsx                    | JavaScript JSX |        245 |         43 |         61 |        349 |       14.93% |
+| Components/Lostprofits/Lostprofits.css        | CSS            |         34 |          0 |         11 |         45 |        0.00% |
+| Components/Lostprofits/Lostprofits.jsx        | JavaScript JSX |        357 |         24 |         87 |        468 |        6.30% |
+| Components/Lostprofits/Table.css              | CSS            |          0 |          0 |          1 |          1 |        0.00% |
+| Components/Lostprofits/Table.jsx              | JavaScript JSX |         51 |          0 |          6 |         57 |        0.00% |
+| Components/Message/Message.css                | CSS            |         42 |          0 |         10 |         52 |        0.00% |
+| Components/Message/Message.jsx                | JavaScript JSX |         36 |          0 |          0 |         36 |        0.00% |
+| Components/Partners/Partners.css              | CSS            |        232 |          0 |         42 |        274 |        0.00% |
+| Components/Partners/Partners.jsx              | JavaScript JSX |        555 |         27 |        103 |        685 |        4.64% |
+| Components/Promo/Promo.css                    | CSS            |         30 |          0 |          3 |         33 |        0.00% |
+| Components/Promo/Promo.jsx                    | JavaScript JSX |         37 |          0 |          1 |         38 |        0.00% |
+| Components/Redux/Reducer/AuthReducer.js       | JavaScript     |         19 |          8 |          6 |         33 |       29.63% |
+| Components/Redux/Reducer/MenuReducer.js       | JavaScript     |         19 |          8 |          6 |         33 |       29.63% |
+| Components/Redux/Reducer/PartnersLevelJson.js | JavaScript     |         15 |          3 |          7 |         25 |       16.67% |
+| Components/Redux/Reducer/PreviewMode.js       | JavaScript     |         15 |          3 |          7 |         25 |       16.67% |
+| Components/Redux/Reducer/UserId.js            | JavaScript     |         15 |          3 |          7 |         25 |       16.67% |
+| Components/Redux/Store.js                     | JavaScript     |         15 |          0 |          4 |         19 |        0.00% |
+| Components/Register/Register.jsx              | JavaScript JSX |        214 |          9 |         44 |        267 |        4.04% |
+| Components/Sidenavbar/Sidenavbar.css          | CSS            |         94 |          1 |         15 |        110 |        1.05% |
+| Components/Sidenavbar/Sidenavbar.jsx          | JavaScript JSX |        177 |          7 |         10 |        194 |        3.80% |
+| Components/Sidenavbar/Sidenavbarmobile.js     | JavaScript     |        159 |         31 |         11 |        201 |       16.32% |
+| Components/Table/Table.css                    | CSS            |          0 |          0 |          1 |          1 |        0.00% |
+| Components/Table/Table.jsx                    | JavaScript JSX |         46 |          0 |          5 |         51 |        0.00% |
+| Components/Tree/Tree.css                      | CSS            |         14 |          0 |          9 |         23 |        0.00% |
+| Components/Tree/Tree.jsx                      | JavaScript JSX |        131 |          0 |         11 |        142 |        0.00% |
+| Components/Uplines/Table.jsx                  | JavaScript JSX |         54 |          0 |          5 |         59 |        0.00% |
+| Components/Uplines/Uplines.css                | CSS            |         34 |          0 |         10 |         44 |        0.00% |
+| Components/Uplines/Uplines.jsx                | JavaScript JSX |        128 |         39 |         39 |        206 |       23.35% |
+| Components/Wallets/ConnectWallet.js           | JavaScript     |         11 |          0 |          3 |         14 |        0.00% |
+| Components/topbar/Topbar.css                  | CSS            |        171 |          0 |         35 |        206 |        0.00% |
+| Components/topbar/Topbar.jsx                  | JavaScript JSX |         67 |          1 |          9 |         77 |        1.47% |
+| Routes/Auth.js                                | JavaScript     |         26 |          0 |          8 |         34 |        0.00% |
+| Routes/Console.js                             | JavaScript     |         57 |          4 |         13 |         74 |        6.56% |
+| Tools/ScrollToTop.js                          | JavaScript     |          9 |          0 |          3 |         12 |        0.00% |
+| Tools/WindowDimensions.js                     | JavaScript     |         19 |          0 |          5 |         24 |        0.00% |
+| Utils/Converter.js                            | JavaScript     |          1 |          0 |          0 |          1 |        0.00% |
+| Utils/index.js                                | JavaScript     |         11 |          4 |          6 |         21 |       26.67% |
+| index.css                                     | CSS            |         13 |          3 |          3 |         19 |       18.75% |
+| index.js                                      | JavaScript     |         18 |          3 |          4 |         25 |       14.29% |
+| logo.svg                                      | XML            |          1 |          0 |          0 |          1 |        0.00% |
+| reportWebVitals.js                            | JavaScript     |         12 |          0 |          2 |         14 |        0.00% |
+| setupTests.js                                 | JavaScript     |          1 |          4 |          1 |          6 |       80.00% |
+| Total                                         |                |      4,896 |        769 |        911 |      6,576 |       13.57% |
++-----------------------------------------------+----------------+------------+------------+------------+------------+--------------+
