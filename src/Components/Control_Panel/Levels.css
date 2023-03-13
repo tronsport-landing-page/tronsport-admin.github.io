@@ -1,6 +1,5 @@
 .level {
   display: flex;
-  background-color: white;
   overflow: hidden;
   max-width: 1200px;
   margin-left: 20px;
@@ -82,7 +81,7 @@ margin: 0;
   margin-right: 20px;
   height: 200px;
   width: 260px;
-  min-width: 260px;
+  min-width: 200px;
   box-shadow: 0 2px 50px 0 rgb(0 0 0 / 5%);
   border-radius: 10px;
   display: flex;
@@ -99,7 +98,7 @@ margin: 0;
   margin-right: 20px;
   height: 200px;
   width: 260px;
-  min-width: 260px;
+  min-width: 200px;
   box-shadow: 0 2px 50px 0 rgb(0 0 0 / 5%);
   border-radius: 10px;
   display: flex;

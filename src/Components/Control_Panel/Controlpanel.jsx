@@ -17,6 +17,11 @@ import { getPreviewModeId } from "../Redux/Reducer/PreviewMode";
 import { useSelector } from "react-redux";
 import { Spinner } from "react-bootstrap";
 
+import Pocket1Icon from "../../Assets/pocket1.svg";
+import Pocket2Icon from "../../Assets/pocket2.svg";
+import Pocket3Icon from "../../Assets/pocket3.svg";
+import Pocket4Icon from "../../Assets/pocket4.svg";
+
 const TEMP_ADDRESS = "TJrQX9SeYDPKVy9eKEViWGqDL2wFGUBaNJ";
 
 function Controlpanel() {
@@ -688,8 +693,8 @@ function Controlpanel() {
             <div class="contentcard_tabs_active">
               <div class="contentcard_tabs_info">
                 <img
-                  src="https://uploads-ssl.webflow.com/5c30d30a32c1877cbb03e545/5c40eb3142d68e3c2b7f8850_ring%20green.png"
-                  width="43"
+                  src={Pocket1Icon}
+                  width="45"
                   alt=""
                   class="contentcard_tabs_active_circle--green"
                 />
@@ -710,13 +715,13 @@ function Controlpanel() {
             <div class="contentcard_tabs_active">
               <div class="contentcard_tabs_info">
                 <img
-                  src="https://uploads-ssl.webflow.com/5c30d30a32c1877cbb03e545/5c43381379dc692ebfb3a76c_ring%20purple.png"
-                  width="43"
+                  src={Pocket2Icon}
+                  width="45"
                   alt=""
                   class="contentcard_tabs_active_circle--green"
                 />
                 <div class="contentcard_tabs_active_text_price">
-                  <strong class="bold-text-2">
+                  <strong class="bold-text-2 profit">
                     {"$ "}
                     <CountUp
                       decimals={6}
@@ -733,8 +738,8 @@ function Controlpanel() {
             <div class="contentcard_tabs_active">
               <div class="contentcard_tabs_info">
                 <img
-                  src="https://uploads-ssl.webflow.com/5c30d30a32c1877cbb03e545/5c433812ff0f50fa752c8bb5_ring%20blue.png"
-                  width="43"
+                  src={Pocket3Icon}
+                  width="45"
                   alt=""
                   class="contentcard_tabs_active_circle--green"
                 />
@@ -755,9 +760,8 @@ function Controlpanel() {
             <div class="contentcard_tabs_active">
               <div class="contentcard_tabs_info">
                 <img
-                  src="https://uploads-ssl.webflow.com/5c30d30a32c1877cbb03e545/5c40eb3142d68e3c2b7f8850_ring%20green.png"
-                  width="43"
-                  id="LevelImage"
+                  src={Pocket4Icon}
+                  width="45"
                   alt=""
                   class="contentcard_tabs_active_circle--green"
                 />
@@ -776,9 +780,24 @@ function Controlpanel() {
           </div>
         </div>
 
-        {/* <div className="ChartDiv">
-          <Chart data={chartData} />
-        </div> */}
+        <div className="LowerContainer">
+          <div className="PurchaseWrapper">
+            <h2>Active</h2>
+            <p>Level 1</p>
+
+            <div className="CostWrapper">
+              <h2>300 TRX</h2>
+              <p>Validity : 122 days left</p>
+            </div>
+            <div className="Button ButtonActivated ButtonRed" >
+              {/* Upgrade Now */}
+              Activated
+            </div>
+          </div>
+          <div className="ChartDiv">
+            <Chart data={chartData} />
+          </div>
+        </div>
 
         {/* <Slidecontent /> */}
 
@@ -794,7 +813,7 @@ function Controlpanel() {
       </div>
       <br />
 
-      <div
+      {/* <div
         style={{
           justifyContent: LoadingLevels ? "center" : null,
           alignItems: LoadingLevels ? "center" : null,
@@ -1137,7 +1156,7 @@ function Controlpanel() {
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

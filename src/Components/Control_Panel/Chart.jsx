@@ -44,6 +44,9 @@ const lineOptions = {
 const styles = {
   fontFamily: "sans-serif",
   textAlign: "center",
+  display:"flex",
+  justifyContent:"center",
+  alignItem:"center"
 };
 
 const Chart = ({ data }) => {
@@ -54,23 +57,23 @@ const Chart = ({ data }) => {
         fill: false,
         lineTension: 0.2,
         // backgroundColor: "rgba(75,192,192,0.4)",
-        borderColor: "#54cc7d",
+        borderColor: "#51D794",
         borderCapStyle: "butt",
         borderDash: [],
         borderDashOffset: 0.0,
         borderJoinStyle: "miter",
-        pointBorderColor: "#54cc7d",
+        pointBorderColor: "#51D794",
         pointBackgroundColor: "#fff",
         pointBorderWidth: 1,
         pointHoverRadius: 5,
-        pointHoverBackgroundColor: "#54cc7d",
+        pointHoverBackgroundColor: "#51D794",
         pointHoverBorderColor: "rgba(220,220,220,1)",
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
         data: data?.data,
         fill: "start",
-        backgroundColor: "#54cc7d14",
+        backgroundColor: "#51D79414",
       },
     ],
   };
