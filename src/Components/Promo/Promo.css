@@ -1,0 +1,33 @@
+.pr-head{
+    display: flex;
+}
+
+.prh2{
+    margin-left: 500px;
+    color: rgba(0, 0, 0, 0.582);
+    font-size: large;
+}
+
+.prnoti{
+    margin-right: 7px;
+}
+
+.prh1{
+    text-align: center;
+    margin-left: 600px;
+    font-size: larger;
+}
+.prheading{
+    margin-left: 20px;
+    font-size: 30px;
+}
+.btnflex{
+    display: flex;
+}
+.btndes{
+    background-color: rgb(105, 102, 102);
+    border: rgb(105, 105, 105) solid 2px;
+    text-align: center;
+    color: rgb(105, 105, 105);
+    font-size: 17px;
+}

@@ -1,0 +1,28 @@
+.App {
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+}
+
+.ControlPanel {
+  background-color: white;
+  width: calc(100vw - 240px) !important;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.ControlPanel-SmallScreen {
+  background-color: white;
+  width: calc(100vw) !important;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.MainDiv {
+  width: 100%;
+  padding-top: 80px;
+}
+
+

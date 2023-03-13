@@ -1,0 +1,51 @@
+.msg-head{
+    display: flex;
+}
+
+.mh2{
+    margin-left: 500px;
+    color: rgba(0, 0, 0, 0.582);
+    font-size: large;
+}
+
+.mnoti{
+    margin-right: 7px;
+}
+
+.mh1{
+    text-align: center;
+    margin-left: 600px;
+    font-size: larger;
+}
+.mheading{
+    margin-left: 20px;
+    font-size: 30px;
+}
+.msgbox{
+    margin: 20px;
+    margin-right: 340px;
+
+}
+.boxhead{
+    background-color: rgba(167, 233, 253, 0.548);
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.headstyle{
+    font-size: 13px;
+
+}
+
+.boxcontent{
+    background-color: white;
+    padding-top: 10px;
+    height:fit-content;
+    padding-bottom: 10px;
+}
+
+.msgimage{
+    height: 525px;
+    width: 515px;
+}
+
