@@ -61,14 +61,8 @@
 }
 
 .Link-Active {
-  background-image: webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#a348f6),
-    to(#442fe7)
-  );
-  background-image: linear-gradient(90deg, #a348f6, #442fe7);
+
+  background-image: linear-gradient(90deg, #5765F7, #5765F7);
   border-radius: 18px;
   margin-block: 0.5rem;
 }
@@ -78,7 +72,7 @@
 }
 
 .Link:hover {
-  background-color: rgba(185, 182, 182, 0.164);
+  background-color: #cbcafe77;
   transition: background-color 200ms ease;
   border-radius: 18px;
 }

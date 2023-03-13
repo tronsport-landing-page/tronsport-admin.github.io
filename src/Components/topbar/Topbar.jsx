@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toogleMenu, getTooglemenu } from "../Redux/Reducer/MenuReducer";
 import { getPreviewModeId } from "../Redux/Reducer/PreviewMode";
 import { getuserId } from "../Redux/Reducer/UserId";
-
+import successIcon from "../../Assets/success.svg"
 function Topbar(opensidebar, opened) {
   const { height, width } = useWindowDimensions();
 
@@ -28,7 +28,7 @@ function Topbar(opensidebar, opened) {
                         <img src={logo} alt="logo" className="logo"></img>
                 </div> */}
 
-        {width <= 850 && (
+        {width <= 860 && (
           <div className="div0">
             <div onClick={() => dispatch(toogleMenu(!menu))} className="menu">
               <img src="https://img.icons8.com/material-outlined/48/000000/menu--v1.png" />{" "}
@@ -42,11 +42,8 @@ function Topbar(opensidebar, opened) {
         </div>
 
         <div className="div2">
-          <div className="contentDiv">
-            <span  style={{ width: "calc(100% - 25px)" }} className="address">
-              Address: <a target="_blank" href={`https://tronscan.org/#/address/${walletId}`} >{walletId}</a>
-            </span>
-            <span style={{ float: "right", position: "absolute", right: 10 }}>
+          <div style={{ marginLeft: "-12.5%" }} className="contentDiv">
+            <span style={{marginRight:"5px"}}>
               <div
                 style={{ overflow: "hidden", width: 30, height: 30 }}
                 className="LanguageDiv"
@@ -55,24 +52,23 @@ function Topbar(opensidebar, opened) {
                   alt=""
                   width="25"
                   height="25"
-                  src="https://avatars.githubusercontent.com/u/64833303?s=96&v=4"
+                  src={successIcon}
                 />
               </div>
+            </span>
+            <span className="address">
+              Address:{" "}
+              <a
+                target="_blank"
+                href={`https://tronscan.org/#/address/${walletId}`}
+              >
+                {walletId}
+              </a>
             </span>
           </div>
         </div>
 
-        <div className="div3">
-          {/* <div className="LanguageDiv">
-            <img
-              className="image"
-              style={{ width: "100%", height: "100%" }}
-              src={britain}
-              alt="aa"
-              width="40px"
-            />
-          </div> */}
-        </div>
+       
       </div>
     </div>
   );

@@ -51,7 +51,7 @@ function Console() {
     <div className="App">
       <ScrollMemory$1 />
 
-      {width >= 850 ? <Sidenavbar /> : <Sidenavbarmobile />}
+      {width >= 860 ? <Sidenavbar /> : <Sidenavbarmobile />}
 
       <div
         className={width >= 850 ? "ControlPanel" : "ControlPanel-SmallScreen "}

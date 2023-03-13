@@ -33,6 +33,8 @@ const App = () => {
         {/* {access ? <Redirect to={"/"} /> : <Redirect to={"/login"} />} */}
         <Route
           to={"/"}
+          // render={() => (authStatus == "LOGGEDIN" ? <Console /> : <Console />)}
+
           render={() => (authStatus == "LOGGEDIN" ? <Console /> : <Auth />)}
         />
 
