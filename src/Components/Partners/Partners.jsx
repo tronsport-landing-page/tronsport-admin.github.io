@@ -31,6 +31,8 @@ function Partners() {
 
   const [LoadingStruct, setLoadingStruct] = useState(true);
   const [LoadingTable, setLoadingTable] = useState(true);
+  const [searchLoader, setsearchLoader] = useState(false);
+
 
   const [searchPartnerData, setsearchPartnerData] = useState({});
 
@@ -468,6 +470,7 @@ function Partners() {
 
   const SearchAboutPartner = async () => {
     try {
+setsearchLoader(true)
       if (searchId.trim().length == 0) {
         return toast.error("Please enter valid RefId/address", {
           style: { marginTop: "70px" },
@@ -481,14 +484,14 @@ function Partners() {
         if (userexist.isExist == false) {
           return toast.error("User does not exist");
         }
-
         const currentLevel = await getcurrentLevel(searchId);
+
         setsearchPartnerData({
           id: userexist.id.toString(),
           address: searchId,
           level: currentLevel,
         });
-
+        
         // console.log(userexist[0]);
       } else {
         const LoadUserAddress = await Utils.contract
@@ -510,8 +513,10 @@ function Partners() {
           level: currentLevel,
         });
       }
+      setsearchLoader(false)
     } catch (e) {
       console.log(e);
+      setsearchLoader(false)
     }
   };
 
@@ -582,49 +587,28 @@ function Partners() {
           className="linkInside"
         >
           <div className="content">
-            {width >= 1100 ? (
-              <>
-                <p className="linkname1">Data about partner</p>
-                <br />
-                <div className="Inline">
-                  <input
-                    placeholder="Enter Id or Address"
-                    value={searchId}
-                    onChange={(e) => setsearchId(e.target.value)}
-                    className={"link2"}
-                  />
-                  <span>
-                    <button
-                      onClick={() => SearchAboutPartner()}
-                      className="copybtn"
-                    >
-                      Search
-                    </button>
-                  </span>
-                </div>
-              </>
-            ) : (
-              <div style={{ width: "100%" }}>
-                <p className="linkname1">Data about partner</p>
-                <br />
+            <>
+              <p className="linkname1">Data about partner</p>
+              <br />
+              <div className="link1">
+                <img alt="" width="25" height="25" src={successIcon} />
                 <input
                   placeholder="Enter Id or Address"
                   value={searchId}
                   onChange={(e) => setsearchId(e.target.value)}
-                  style={{ width: "100%" }}
-                  className={"link1"}
+                  className={"link2"}
                 />
-                <span>
-                  <button
-                    onClick={() => SearchAboutPartner()}
-                    style={{ marginTop: "10px" }}
-                    className="copybtn"
-                  >
-                    Search
-                  </button>
-                </span>
+                <br />
+                <button
+                  onClick={() => SearchAboutPartner()}
+                  className="copybtn"
+                >
+                  {searchLoader ? "Searching":"Search"}
+                  
+                </button>
               </div>
-            )}
+           
+            </>
 
             <br />
             <div className="PartnerList">
