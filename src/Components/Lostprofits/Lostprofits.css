@@ -1,45 +1,49 @@
 .Lostprofits {
     padding: 0px 40px 250px 20px;
     overflow: hidden;
+    color: #404040;
+    font-size: 1vw;
+    transition: 0.2s ease-in-out 0s;
+    padding-inline: 2em;
   }
-
-
-.Lostprofits .Table{
+  
+  .Lostprofits .headerWrapper {
+    width: 100%;
+  }
+  
+  .Lostprofits .Table {
     width: 100%;
     max-width: fit-content;
     display: flex;
     flex-direction: row;
     height: 100%;
     background-color: white;
-    margin-left: 20px;
     overflow: hidden;
     padding: 20px;
     border-radius: 10px;
-}
-
-.Lostprofits .rec{
+  }
+  
+  .Lostprofits .rec {
     width: 100%;
     max-width: fit-content;
     background-color: white;
-    margin-left: 20px;
     overflow: hidden;
-    padding: 20px;
     border-radius: 10px;
-}
-
-
-
-
-.Lostprofits .TableDivWrap{
-    width: auto;
-}
-
-@media only screen and (max-width: 919px) {
+  }
+  
+  .Lostprofits .TableDivWrap {
+    width: 100%;
+  }
+  
+  @media only screen and (max-width: 1130px) {
     .Lostprofits {
-        padding: 0px 40px 250px 0px;
-        overflow: hidden;
-      }
-   
-}
-
+      font-size: 1.4vw;
+    }
+  }
+  
+  @media only screen and (max-width: 670px) {
+    .Lostprofits {
+      font-size: 2.8vw;
+    }
+  }
   

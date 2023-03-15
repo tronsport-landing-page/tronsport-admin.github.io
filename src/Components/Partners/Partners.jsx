@@ -555,7 +555,7 @@ setsearchLoader(true)
   return (
     <div className="panel">
       <Toaster />
-      <div>
+      <div className="headerWrapper" >
         <p className="header">Partners</p>
       </div>
 
@@ -580,10 +580,6 @@ setsearchLoader(true)
         </div>
 
         <div
-          style={{
-            marginLeft: width >= 1100 ? "30px" : "0",
-            marginTop: width >= 1100 ? "0" : "20px",
-          }}
           className="linkInside"
         >
           <div className="content">

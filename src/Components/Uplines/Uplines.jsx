@@ -174,7 +174,7 @@ function Uplines() {
 
   return (
     <div className="Uplines">
-      <div>
+      <div className="headerWrapper" >
         <p className="header">Uplines</p>
       </div>
 

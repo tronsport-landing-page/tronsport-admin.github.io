@@ -4,11 +4,15 @@
   color: #404040;
   font-size: 1vw;
   transition: 0.2s ease-in-out 0s;
+  padding-inline: 2em;
+}
+
+.headerWrapper{
+  width: 100%;
 }
 
 .header {
   font-weight: normal;
-  margin-left: 20px;
   margin-block: 32px;
   font-family: Montserrat, sans-serif;
   color: #404040;
@@ -42,8 +46,8 @@
   flex-direction: row;
   height: 100%;
   background-color: transparent;
-  margin-left: 20px;
   overflow: hidden;
+  justify-content: space-between;
 }
 
 .linkbox p {
@@ -51,7 +55,8 @@
 }
 
 .linkInside {
-  width: 45%;
+  width: 49%;
+  min-width: 350px;
   /* height: 10em; */
   overflow: hidden;
   border-radius: 5px;
@@ -71,7 +76,8 @@
 }
 
 .copybtn {
-  background-color: #51D794;
+  width: max-content;
+  background-color: #51d794;
   color: white;
   text-align: center;
   border-radius: 11px;
@@ -82,13 +88,12 @@
   transition: 0.2s ease-in-out 0s;
 }
 
-.copybtn:active{
+.copybtn:active {
   transform: scale(0.9);
-  
 }
 
 .copybtn2 {
-  background-color: #51D794;
+  background-color: #51d794;
   color: white;
   text-align: center;
   width: 800px;
@@ -127,18 +132,20 @@
   border: 1px #ededed solid;
 }
 
-.link1 img{
+.link1 img {
   width: 1.2em;
   height: auto;
   margin-right: 0.5em;
 }
 
 .link1 input {
-  width: 75%;
+  width: 70%;
+  height: inherit;
   outline: none;
   border: 0px;
+  background-color: transparent;
+  font-size: 1.2em;
 }
-
 
 .link1 button {
   width: 25%;
@@ -166,7 +173,7 @@
 }
 
 .linkInside .Inline .copybtn {
-  background-color: #51D794;
+  background-color: #51d794;
   color: white;
   text-align: center;
   width: 130px;
@@ -194,15 +201,11 @@
 }
 
 .structure {
-  background-color: white;
-  margin-left: 20px;
-  padding-right: 30px;
-  padding-top: 5px;
-  padding-bottom: 20px;
+  width: 100%;
   margin-top: 20px;
-  padding-left: 30px;
   border-radius: 5px;
   overflow: hidden;
+  padding-inline: 0.6em;
 }
 
 .con {
@@ -238,6 +241,7 @@
 
 .inp .copybtn {
   width: 120px;
+  height: 100%;
   margin-left: 15px;
 }
 
@@ -277,20 +281,54 @@ td {
 table {
   border-collapse: collapse;
   overflow: scroll;
+
 }
 
-@media only screen and (max-width: 1310px) {
+@media only screen and (max-width: 1130px) {
+  .panel {
+    font-size: 1.4vw;
+
+  }
+
+  .linkInside {
+    width: 100%;
+    margin-top: 1em;
+    aspect-ratio: 1/0.3;
+  }
+
+  .linkbox {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  .panel {
+    font-size: 2.8vw;
+  }
+
+  .linkInside {
+    width: 100%;
+    min-width: 0 !important;
+    margin-top: 1em;
+    aspect-ratio: 1/0.48;
+  }
+
+  .linkInside .content {
+    padding: 1.5em;
+  }
+
   .linkbox {
     display: flex;
     flex-wrap: wrap;
   }
 
-  .linkInside,
-  .content {
-    min-width: 50px !important;
+  .inp .copybtn {
+    font-size: 1.5em;
   }
 
-  .copybtn{
-    width: 40% !important;
+  .Tree{
+    font-size: 1.4em;
+
   }
 }

@@ -456,7 +456,7 @@ function Lostprofits() {
 
   return (
     <div className="Lostprofits">
-      <div>
+      <div className="headerWrapper" >
         <p className="header">Lostprofits</p>
       </div>
 

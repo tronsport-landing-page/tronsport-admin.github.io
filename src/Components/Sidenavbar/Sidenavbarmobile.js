@@ -21,6 +21,9 @@ import TreeIcon from "../../Assets/tree.svg";
 import TreeIconDark from "../../Assets/tree-dark.svg";
 import UplineIcon from "../../Assets/upline.svg";
 import UplineIconDark from "../../Assets/upline-dark.svg";
+import BurnIcon from "../../Assets/burn.svg";
+import BurnIconDark from "../../Assets/burn-dark.svg";
+
 
 function Sidenavbarmobile() {
   const [openMenu, setopenMenu] = useState(false);
@@ -138,7 +141,7 @@ function Sidenavbarmobile() {
                     Uplines
                   </li>
                 </Link>
-                {/* <Link
+                <Link
               className={VALIDROUTE("/lostprofits") ? "Link-Active" : "Link"}
               to="/Lostprofits"
               style={{
@@ -156,14 +159,14 @@ function Sidenavbarmobile() {
               >
                 <span className="icon">
                   {!VALIDROUTE("/lostprofits") ? (
-                    <img src="https://img.icons8.com/fluency-systems-filled/24/000000/search-dollar.png" />
+                    <img style={{marginLeft:"3px"}} width="22" src={BurnIconDark} />
                   ) : (
-                    <img src="https://img.icons8.com/fluency-systems-filled/24/ffffff/search-dollar.png" />
+                    <img style={{marginLeft:"3px"}} width="22" src={BurnIcon} />
                   )}
                 </span>
                 Lost profits
               </li>
-            </Link> */}
+            </Link>
                 {/* <li
               style={{ color: VALIDROUTE("/promo") ? "white" : null }}
               className="sidebaritems"

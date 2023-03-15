@@ -1,43 +1,48 @@
 .Uplines {
-    padding: 0px 40px 250px 20px;
-    overflow: hidden;
+  padding: 0px 40px 250px 20px;
+  overflow: hidden;
+  color: #404040;
+  font-size: 1vw;
+  transition: 0.2s ease-in-out 0s;
+  padding-inline: 2em;
+}
+
+.Uplines .headerWrapper {
+  width: 100%;
+}
+
+.Uplines .Table {
+  width: 100%;
+  max-width: fit-content;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  background-color: white;
+  overflow: hidden;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.Uplines .rec {
+  width: 100%;
+  max-width: fit-content;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.Uplines .TableDivWrap {
+  width: 100%;
+}
+
+@media only screen and (max-width: 1130px) {
+  .Uplines {
+    font-size: 1.4vw;
   }
-
-
-.Uplines .Table{
-    width: 100%;
-    max-width: fit-content;
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    background-color: white;
-    margin-left: 20px;
-    overflow: hidden;
-    padding: 20px;
-    border-radius: 10px;
 }
 
-.Uplines .rec{
-    width: 100%;
-    max-width: fit-content;
-    background-color: white;
-    margin-left: 20px;
-    overflow: hidden;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-
-
-
-.Uplines .TableDivWrap{
-    width: auto;
-}
-  
-@media only screen and (max-width: 919px) {
-    .Uplines {
-        padding: 0px 40px 250px 0px;
-        overflow: hidden;
-      }
-   
+@media only screen and (max-width: 670px) {
+  .Uplines {
+    font-size: 2.8vw;
+  }
 }
