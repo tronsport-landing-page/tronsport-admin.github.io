@@ -31,6 +31,9 @@ const Register = () => {
   const [alertdata, setalertdata] = useState(null);
   const [Loader, setLoader] = useState(false);
 
+
+  const BUY_AMOUNT = 3;
+
   const FOUNDATION_ADDRESS = "TG31Eya5GywMYV2rwq3rwGbep4eoykWREP";
 
   const authStatus = useSelector(getAuth);
@@ -125,13 +128,15 @@ const Register = () => {
 
       await Utils.setTronWeb(window.tronWeb).then(async () => {
         if (refId != null) {
-          if (JSON.parse(refId) <= 9) {
-            let CurrentIdLoad = await Utils.contract.currUserID().call();
-            let CurrentId = await Promise.resolve(CurrentIdLoad);
-            await Buy(JSON.parse(CurrentId.toString()));
-          } else {
-            await Buy(refId);
-          }
+          // if (JSON.parse(refId) <= 9) {
+          //   let CurrentIdLoad = await Utils.contract.currUserID().call();
+          //   let CurrentId = await Promise.resolve(CurrentIdLoad);
+          //   await Buy(JSON.parse(CurrentId.toString()));
+          // } else {
+          //   await Buy(refId);
+          // }
+          await Buy(refId);
+
         } else {
           let CurrentIdLoad = await Utils.contract.currUserID().call();
           let CurrentId = await Promise.resolve(CurrentIdLoad);
@@ -157,7 +162,7 @@ const Register = () => {
           .regUser(refID)
           .send({
             feeLimit: 100_000_000,
-            callValue: 1000000 * 300,
+            callValue: 1000000 * BUY_AMOUNT,
             shouldPollResponse: true,
           })
           .then(async (res) => {
