@@ -149,6 +149,7 @@ const Register = () => {
   };
 
   const Buy = async (refID) => {
+
     window.tronWeb.defaultAddress = {
       hex: window.tronWeb?.address?.toHex(id),
       base58: id,
@@ -170,6 +171,8 @@ const Register = () => {
             toast.success("Transaction done successfully");
             await FetchUserId(id);
             dispatch(toogleAuth("LOGGEDIN"));
+            window.location.href = '/';
+
 
             return res;
           })
