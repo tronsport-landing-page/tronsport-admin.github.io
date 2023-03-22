@@ -29,17 +29,17 @@ function Uplines() {
     let temp_address = address;
     let TempArray = [];
 
-
     for await (const i of Array.from({ length: 5 }, (_, i) => i + 1)) {
       const id_to_num = await Utils.contract.users(temp_address).call();
 
       if (!id_to_num) {
+        setLoadingTable(false);
         break;
       }
       const data = await Promise.resolve(id_to_num);
       const refId = data?.referrerID?.toNumber();
       const refererAddressPromise = await Utils.contract.userList(refId).call();
-      const refererAddress = await Hex_to_base58(refererAddressPromise)
+      const refererAddress = await Hex_to_base58(refererAddressPromise);
 
       await currentLevel(refererAddress).then((res) => {
         setdata((e) => [
@@ -53,12 +53,11 @@ function Uplines() {
       });
       temp_address = refererAddress;
 
+      if (LoadingTable) {
+        setLoadingTable(false);
+      }
       if (refId == 0) {
         break;
-      }
-
-      if(LoadingTable){
-        setLoadingTable(false)
       }
     }
 
