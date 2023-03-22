@@ -46,8 +46,6 @@ function Controlpanel() {
 
   let partners = [];
 
-  console.log(previewId);
-
   const [tronWeb, settronWeb] = useState({ installed: false, loggedIn: false });
 
   useEffect(() => {
@@ -713,7 +711,7 @@ function Controlpanel() {
           <div
             style={{
               width: "100%",
-              height:"40vh",
+              height: "40vh",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -725,7 +723,9 @@ function Controlpanel() {
               animation="border"
               role="status"
             >
-              <span style={{color:"black"}} className="visually-hidden">Loading...</span>
+              <span style={{ color: "black" }} className="visually-hidden">
+                Loading...
+              </span>
             </Spinner>
           </div>
         )}

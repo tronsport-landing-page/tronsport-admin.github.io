@@ -33,7 +33,6 @@ function Partners() {
   const [LoadingTable, setLoadingTable] = useState(true);
   const [searchLoader, setsearchLoader] = useState(false);
 
-
   const [searchPartnerData, setsearchPartnerData] = useState({});
 
   const [tronWeb, settronWeb] = useState({ installed: false, loggedIn: false });
@@ -80,12 +79,6 @@ function Partners() {
         } else {
           return;
         }
-
-        for await (const item of items) {
-          let e = await Hex_to_base58(item);
-          if (e == undefined || !e) return;
-          await FetchTree(e, TREEDATA);
-        }
       });
 
     return TREEDATA;
@@ -109,10 +102,6 @@ function Partners() {
     }
 
     return temp;
-    // if(data[0]?.children){
-    //   ProccessTreeData(data[0]?.children)
-    // }
-    // return ans
   };
 
   let PartnersArray = [];
@@ -321,48 +310,24 @@ function Partners() {
     return temp;
   };
 
-  const FetchPayments = async (id, count) => {
-    ++LEVEL;
+  const FetchPayments = async (id) => {
+    let ans = [];
+    await Utils.contract
+      .paymentsLength(id)
+      .call()
+      .then(async (length) => {
+        setLoadingTable(false);
 
-    // console.log(count, PartnersArray.length)
-
-    if (count == PartnersArray.length) {
-      return await calculate_CoinsFromLevels(LevelJSON).then(async (res) => {
-        return await PreProcessData(res).then((result) => {
-          setTableData(result);
-          setLoadingTable(false);
-        });
+        for (let index = 0; index < length.toNumber(); index++) {
+          let payment = await Utils.contract.payments(id, index).call();
+          let obj = {};
+          obj.address = await Hex_to_base58(payment.payerAddress);
+          obj.id = payment.payerId.toNumber();
+          obj.coins = payment.amount.toNumber() / 1000000;
+          ans.push(obj);
+          setTableData((e) => [...e, obj]);
+        }
       });
-      // return;
-    } else {
-      await Utils.contract
-        .viewUserReferral(id)
-        .call()
-        .then(async (items) => {
-          PartnersArray = [...PartnersArray, ...items];
-
-          if (LEVEL == 1) {
-            LevelJSON[`${LEVEL}`] = await ConverttoHexArray(items);
-          } else if (LEVEL == 2) {
-            LevelJSON[`${LEVEL}`] = await ConverttoHexArray(items);
-          } else if (LEVEL == 3) {
-            LevelJSON[`${LEVEL}`] = await ConverttoHexArray(items);
-          } else if (LEVEL == 4) {
-            LevelJSON[`${LEVEL}`] = await ConverttoHexArray(items);
-          } else if (LEVEL == 5) {
-            LevelJSON[`${LEVEL}`] = await ConverttoHexArray(items);
-          }
-
-          if (items.length > 0) {
-            for await (const item of items) {
-              let e = await Hex_to_base58(item);
-              if (e == undefined || !e) return;
-
-              await FetchPayments(e, count);
-            }
-          }
-        });
-    }
   };
 
   const CONNECT_WALLET = async () => {
@@ -431,21 +396,17 @@ function Partners() {
           });
         });
       }
-      return await Utils.setTronWeb(window.tronWeb).then(async () => {
-        return await FetchTree(walletId, {}).then(async (e) => {
-          return await ProccessTreeData(e, walletId, {}).then(async (res) => {
-            settreeData([res]);
-            setLoadingStruct(false);
 
-            return await FetchPartners(walletId, []).then(
-              async (TotalPartnersCount) => {
-                // console.log(TotalPartnersCount);
-                return await FetchPayments(walletId, TotalPartnersCount.length);
-              }
-            );
-          });
-        });
-      });
+      await FetchPayments(walletId);
+
+      // return await Utils.setTronWeb(window.tronWeb).then(async () => {
+      //   return await FetchTree(walletId, {}).then(async (e) => {
+      //     return await ProccessTreeData(e, walletId, {}).then(async (res) => {
+      //       settreeData([res]);
+      //       setLoadingStruct(false);
+      //     });
+      //   });
+      // });
     } catch (e) {
       CONNECT_WALLET();
       console.log(e);
@@ -470,7 +431,7 @@ function Partners() {
 
   const SearchAboutPartner = async () => {
     try {
-setsearchLoader(true)
+      setsearchLoader(true);
       if (searchId.trim().length == 0) {
         return toast.error("Please enter valid RefId/address", {
           style: { marginTop: "70px" },
@@ -491,7 +452,7 @@ setsearchLoader(true)
           address: searchId,
           level: currentLevel,
         });
-        
+
         // console.log(userexist[0]);
       } else {
         const LoadUserAddress = await Utils.contract
@@ -513,10 +474,10 @@ setsearchLoader(true)
           level: currentLevel,
         });
       }
-      setsearchLoader(false)
+      setsearchLoader(false);
     } catch (e) {
       console.log(e);
-      setsearchLoader(false)
+      setsearchLoader(false);
     }
   };
 
@@ -555,7 +516,7 @@ setsearchLoader(true)
   return (
     <div className="panel">
       <Toaster />
-      <div className="headerWrapper" >
+      <div className="headerWrapper">
         <p className="header">Partners</p>
       </div>
 
@@ -579,9 +540,7 @@ setsearchLoader(true)
           </div>
         </div>
 
-        <div
-          className="linkInside"
-        >
+        <div className="linkInside">
           <div className="content">
             <>
               <p className="linkname1">Data about partner</p>
@@ -599,11 +558,9 @@ setsearchLoader(true)
                   onClick={() => SearchAboutPartner()}
                   className="copybtn"
                 >
-                  {searchLoader ? "Searching":"Search"}
-                  
+                  {searchLoader ? "Searching" : "Search"}
                 </button>
               </div>
-           
             </>
 
             <br />
