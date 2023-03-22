@@ -57,7 +57,8 @@ function Partners() {
       });
   };
 
-  const FetchTree = async (id, TREEDATA) => {
+  const FetchTree = async (id) => {
+    let TREEDATA = {};
     await Utils.contract
       .viewUserReferral(id)
       .call()
@@ -76,12 +77,13 @@ function Partners() {
             children: temp,
           };
           TREEDATA[`${id}`] = temp;
-        } else {
-          return;
         }
-      });
 
-    return TREEDATA;
+        await ProccessTreeData(TREEDATA, walletId, {}).then(async (res) => {
+          settreeData([res]);
+          setLoadingStruct(false);
+        });
+      });
   };
 
   const ProccessTreeData = async (data, id, temp) => {
@@ -118,185 +120,7 @@ function Partners() {
     return temp;
   };
 
-  const calculate_CoinsFromLevels = async (data) => {
-    let TempData = [];
-
-    let LEVEL1 = data["1"];
-    let LEVEL2 = data["2"];
-    let LEVEL3 = data["3"];
-    let LEVEL4 = data["4"];
-    let LEVEL5 = data["5"];
-
-    if (LEVEL1 != undefined) {
-      let Totalcoins = 0;
-      let tempArray = [];
-
-      for await (const id of LEVEL1) {
-        // LEVEL 1
-        // temp["address"] = id;
-
-        let expiration0 = (
-          await Utils.contract.viewUserLevelExpired(id, 1).call()
-        ).toNumber();
-
-        if (expiration0 != 0) {
-          Totalcoins +=
-            (await Utils.contract.LEVEL_PRICE(1).call()).toNumber() / 1000000;
-
-          tempArray.push({ address: id, coins: Totalcoins });
-          Totalcoins = 0;
-        }
-
-        // LEVEL 6
-        let expiration01 = (
-          await Utils.contract.viewUserLevelExpired(id, 6).call()
-        ).toNumber();
-
-        if (expiration01 != 0) {
-          Totalcoins +=
-            (await Utils.contract.LEVEL_PRICE(6).call()).toNumber() / 1000000;
-          tempArray.push({ address: id, coins: Totalcoins });
-          Totalcoins = 0;
-        }
-      }
-
-      TempData = [...TempData, ...tempArray];
-    }
-
-    if (LEVEL2 != undefined) {
-      let Totalcoins = 0;
-      let tempArray = [];
-
-      for await (const id of LEVEL2) {
-        let expiration1 = (
-          await Utils.contract.viewUserLevelExpired(id, 2).call()
-        ).toNumber();
-
-        if (expiration1 != 0) {
-          Totalcoins +=
-            (await Utils.contract.LEVEL_PRICE(2).call()).toNumber() / 1000000;
-          tempArray.push({ address: id, coins: Totalcoins });
-          Totalcoins = 0;
-        }
-
-        // LEVEL 6
-        let expiration2 = (
-          await Utils.contract.viewUserLevelExpired(id, 7).call()
-        ).toNumber();
-
-        if (expiration2 != 0) {
-          Totalcoins +=
-            (await Utils.contract.LEVEL_PRICE(7).call()).toNumber() / 1000000;
-          tempArray.push({ address: id, coins: Totalcoins });
-          Totalcoins = 0;
-        }
-      }
-      TempData = [...TempData, ...tempArray];
-    }
-
-    if (LEVEL3 != undefined) {
-      let Totalcoins = 0;
-      let tempArray = [];
-
-      for await (const id of LEVEL3) {
-        // LEVEL 2
-
-        let expiration3 = (
-          await Utils.contract.viewUserLevelExpired(id, 3).call()
-        ).toNumber();
-
-        if (expiration3 != 0) {
-          Totalcoins +=
-            (await Utils.contract.LEVEL_PRICE(3).call()).toNumber() / 1000000;
-          tempArray.push({ address: id, coins: Totalcoins });
-          Totalcoins = 0;
-        }
-
-        // LEVEL 7
-        let expiration4 = (
-          await Utils.contract.viewUserLevelExpired(id, 8).call()
-        ).toNumber();
-
-        if (expiration4 != 0) {
-          Totalcoins +=
-            (await Utils.contract.LEVEL_PRICE(8).call()).toNumber() / 1000000;
-          tempArray.push({ address: id, coins: Totalcoins });
-          Totalcoins = 0;
-        }
-      }
-      TempData = [...TempData, ...tempArray];
-    }
-
-    if (LEVEL4 != undefined) {
-      let Totalcoins = 0;
-      let tempArray = [];
-
-      for await (const id of LEVEL4) {
-        // LEVEL 3
-
-        let expiration5 = (
-          await Utils.contract.viewUserLevelExpired(id, 4).call()
-        ).toNumber();
-
-        if (expiration5 != 0) {
-          Totalcoins +=
-            (await Utils.contract.LEVEL_PRICE(4).call()).toNumber() / 1000000;
-          tempArray.push({ address: id, coins: Totalcoins });
-          Totalcoins = 0;
-        }
-
-        // LEVEL 8
-
-        let expiration6 = (
-          await Utils.contract.viewUserLevelExpired(id, 9).call()
-        ).toNumber();
-
-        if (expiration6 != 0) {
-          Totalcoins +=
-            (await Utils.contract.LEVEL_PRICE(9).call()).toNumber() / 1000000;
-          tempArray.push({ address: id, coins: Totalcoins });
-          Totalcoins = 0;
-        }
-      }
-      TempData = [...TempData, ...tempArray];
-
-      if (LEVEL5 != undefined) {
-        let Totalcoins = 0;
-        let tempArray = [];
-
-        for await (const id of LEVEL5) {
-          // LEVEL 4
-          let expiration7 = (
-            await Utils.contract.viewUserLevelExpired(id, 5).call()
-          ).toNumber();
-
-          if (expiration7 != 0) {
-            Totalcoins +=
-              (await Utils.contract.LEVEL_PRICE(5).call()).toNumber() / 1000000;
-            tempArray.push({ address: id, coins: Totalcoins });
-            Totalcoins = 0;
-          }
-
-          // LEVEL 9
-          let expiration8 = (
-            await Utils.contract.viewUserLevelExpired(id, 10).call()
-          ).toNumber();
-
-          if (expiration8 != 0) {
-            Totalcoins +=
-              (await Utils.contract.LEVEL_PRICE(10).call()).toNumber() /
-              1000000;
-            tempArray.push({ address: id, coins: Totalcoins });
-            Totalcoins = 0;
-          }
-        }
-        TempData = [...TempData, ...tempArray];
-      }
-
-      // setcoinsCount(Totalcoins);
-    }
-    return TempData;
-  };
+  
 
   const PreProcessData = async (data) => {
     let temp = [];
@@ -397,16 +221,7 @@ function Partners() {
         });
       }
 
-      await FetchPayments(walletId);
-
-      // return await Utils.setTronWeb(window.tronWeb).then(async () => {
-      //   return await FetchTree(walletId, {}).then(async (e) => {
-      //     return await ProccessTreeData(e, walletId, {}).then(async (res) => {
-      //       settreeData([res]);
-      //       setLoadingStruct(false);
-      //     });
-      //   });
-      // });
+      Promise.all([FetchPayments(walletId), FetchTree(walletId)]);
     } catch (e) {
       CONNECT_WALLET();
       console.log(e);
