@@ -142,6 +142,13 @@
   overflow: hidden;
   border: 1px solid #ededed;
   border-radius: 1.4em;
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #464040;
+}
+
+.ChartDiv h2{
+  margin-bottom: 1em;
 }
 
 .PurchaseWrapper{
@@ -201,11 +208,29 @@
 .ButtonRed{
   background-color: #F65F73;
   color: white;
+  transition: 0.1s ease-in-out 0s;
+
 }
 
 .ButtonActivated{
   background-color: #E5F9EF;
   color: #51D794;
+  transition: 0.1s ease-in-out 0s;
+}
+
+.ButtonActivated:hover{
+  background-color: #51D794;
+  color: white;
+}
+
+
+.ButtonActivated:active{
+  transform: scale(0.9);
+}
+
+.ButtonRed:active{
+  transform: scale(0.9);
+
 }
 
 

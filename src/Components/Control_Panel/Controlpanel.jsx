@@ -36,8 +36,11 @@ function Controlpanel() {
   const [coinPrice, setcoinPrice] = useState(0);
   const [chartData, setchartData] = useState({ labels: [], data: [] });
   const [currentLevel, setcurrentLevel] = useState(0);
+  const [expiredDate, setexpiredDate] = useState(0);
+
   const [FOUNDATION_ADDRESS, setFOUNDATION_ADDRESS] = useState(TEMP_ADDRESS);
   const [LoadingLevels, setLoadingLevels] = useState(true);
+  const LEVEL_PRICE = [300, 600, 600];
 
   let Total = 0;
 
@@ -53,13 +56,17 @@ function Controlpanel() {
   }, []);
 
   const FetchCoinCurrecy = async () => {
-    fetch(
-      `https://api.coingecko.com/api/v3/simple/price?ids=tron&vs_currencies=usd&include_market_cap=true`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setcoinPrice(data.tron.usd);
-      });
+    try {
+      fetch(
+        `https://api.coingecko.com/api/v3/simple/price?ids=tron&vs_currencies=usd&include_market_cap=true`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setcoinPrice(data?.tron?.usd);
+        });
+    } catch (error) {
+      // alert("ERROR")
+    }
   };
 
   const ProccessRefralGraphData = async (data) => {
@@ -109,58 +116,39 @@ function Controlpanel() {
       Promise.all([
         Utils.contract.users(id).call(),
         Utils.contract.getUserIndirectReferralCount(id).call(),
-        Utils.contract.getUserCurrentLevel(id).call(),
-      ]).then(async(values) => {
+        FetchLevel(id),
+      ]).then(async (values) => {
         let userData = values[0];
         let indirectReferralData = values[1];
-        let levelData = values[2];
         let earning = userData.earning.toNumber() / 1000000;
         let directReferralCount =
           userData?.directReferralCount?.toNumber() || 0;
         let indirectReferralCount = indirectReferralData?.toNumber() || 0;
-        let level = levelData?.toNumber() || 0;
 
         setcoinsCount(earning);
         setdirectPartners(directReferralCount);
         setindirectPartners(indirectReferralCount);
-        setcurrentLevel(level);
-        await GetChartData(id,indirectReferralCount);
-      });
+        setLoadingLevels(false);
 
-      // console.log(earning,"HIII")
-      // return await FetchPartners(id, []).then(async (e) => {
-      //   setpartnersList(e);
-      //   return await getcurrentLevel(id).then(async () => {
-      //     return await FetchEarning(id, e.length).then(async () => {
-      //       await ProccessRefralGraphData(e).then(async (res) => {
-      //         setchartData(res);
-      //         await FetchLevels(id).then((data) => {
-      //           setLevelsData(data);
-      //           setLoadingLevels(false);
-      //         });
-      //         // console.log(res);
-      //       });
-      //     });
-      //   });
-      // });
+        await GetChartData(id, indirectReferralCount);
+      });
     } catch (e) {
       console.log(e);
+      setLoadingLevels(false);
     }
   };
 
-  const GetChartData = async (id,indirectCount) => {
+  const GetChartData = async (id, indirectCount) => {
     const directPartners = await Utils.contract.viewUserReferral(id).call();
 
     let indirectPartnersList = [];
 
     for (let index = 0; index < indirectCount; index++) {
-
-      
       // const element = array[index];
       let partnerAddress = await Utils.contract
         .viewUserIndirectReferral(id, index)
         .call();
-        indirectPartnersList.push(partnerAddress);
+      indirectPartnersList.push(partnerAddress);
     }
 
     let items = [...directPartners, ...indirectPartnersList];
@@ -170,10 +158,28 @@ function Controlpanel() {
       newArray.push(x);
     }
 
-
     await ProccessRefralGraphData(newArray).then(async (res) => {
       setchartData(res);
     });
+  };
+
+  const FetchLevel = async (id) => {
+    const LevelData = await Utils.contract.getUserCurrentLevel(id).call();
+    let level = LevelData?.toNumber() || 0;
+    setcurrentLevel(level);
+
+    const expiredData = await Utils.contract
+      .viewUserLevelExpired(id, level)
+      .call();
+    let ExpiredDate = expiredData.toNumber();
+    setexpiredDate(
+      Math.round(
+        (new Date(ExpiredDate * 1000).getTime() -
+          new Date(Date.now()).getTime()) /
+          (1000 * 60 * 60 * 24),
+        0
+      )
+    );
   };
 
   const getcurrentLevel = async (address) => {
@@ -317,31 +323,6 @@ function Controlpanel() {
   //     });
   // };
 
-  let PartnersArray = [];
-  let LevelJSON = {};
-
-  let MAX_LEVEL = 5;
-  var LEVEL = 0;
-
-  let countLoading = 0;
-
-  const FetchEarning = async (id, count) => {
-    const joinedData = await Utils.contract
-      .users("TJrQX9SeYDPKVy9eKEViWGqDL2wFGUBaNJ")
-      .call();
-    console.log(joinedData?.earning.toNumber(), "HIII");
-  };
-
-  const calculate_CoinsFromLevels = async (data) => {
-    let Totalcoins = 0;
-    // await Utils.contract.LEVEL_PRICE(7).call().toNumber() / 1000000
-    // const joinedData = await Utils.contract.users(address).call();
-    // console.log(joinedData)
-
-    // setcoinsCount(Totalcoins);
-    return Totalcoins;
-  };
-
   const ConverttoHexArray = async (items) => {
     let temp = [];
     for await (const i of items) {
@@ -440,6 +421,20 @@ function Controlpanel() {
   const [LevelsData, setLevelsData] = useState({});
 
   const Buy = async (value, level) => {
+    if (level > 1 && level < 3) {
+      const canUpgradeData = await Utils.contract.users(id).call();
+      if (canUpgradeData?.directReferralCount < 5) {
+        toast.error(
+          `Please Direct Refer Minimum 5 People in order to Upgrade`,
+          {
+            position: "bottom-center",
+            // style: { marginTop: "80px" },
+          }
+        );
+        return;
+      }
+    }
+
     const buytoast = toast.loading(
       "Waiting for Transaction Confirmation!! Data will get updated automatically",
       { position: "bottom-center", style: { marginTop: "80px" } }
@@ -488,7 +483,7 @@ function Controlpanel() {
   const FetchLevels = async (address) => {
     let Temp = {};
 
-    for await (const level of Array.from({ length: 10 }, (_, i) => i + 1)) {
+    for await (const level of Array.from({ length: 3 }, (_, i) => i + 1)) {
       Temp[`${level}`] = null;
 
       const checkLevel = await Utils.contract
@@ -667,37 +662,75 @@ function Controlpanel() {
           </div>
         </div>
 
-        <div className="LowerContainer">
-          <div className="PurchaseWrapper">
-            <h2>Active</h2>
-            <p>Level 1</p>
+        {!LoadingLevels ? (
+          <div className="LowerContainer">
+            <div className="PurchaseWrapper">
+              {currentLevel == 0 ? <h2>Expired</h2> : <h2>Active</h2>}
+              <p>Level {currentLevel}</p>
 
-            <div className="CostWrapper">
-              <h2>300 TRX</h2>
-              <p>Validity : 122 days left</p>
+              <div className="CostWrapper">
+                <h2>
+                  {currentLevel == 0
+                    ? LEVEL_PRICE[0]
+                    : LEVEL_PRICE[currentLevel - 1]}{" "}
+                  TRX
+                </h2>
+                {expiredDate > 0 ? (
+                  <p>Validity : {expiredDate} days left</p>
+                ) : (
+                  <p>Expired : {expiredDate} days ago</p>
+                )}
+              </div>
+              <div
+                onClick={() =>
+                  Buy(
+                    currentLevel == 0
+                      ? LEVEL_PRICE[0]
+                      : currentLevel == 3
+                      ? LEVEL_PRICE[2]
+                      : LEVEL_PRICE[currentLevel + 1],
+                    currentLevel == 3 ? 3 : currentLevel + 1
+                  )
+                }
+                className={`Button ${
+                  currentLevel == 0 ? "ButtonRed" : "ButtonActivated"
+                }`}
+              >
+                {/* Upgrade Now */}
+                {currentLevel == 0
+                  ? "Activate Now"
+                  : currentLevel == 3
+                  ? "Extend Now"
+                  : "Upgrade Now"}
+              </div>
             </div>
-            <div className="Button ButtonActivated ButtonRed">
-              {/* Upgrade Now */}
-              Activated
+            <div className="ChartDiv">
+              <h2>Referals</h2>
+              <Chart data={chartData} />
             </div>
           </div>
-          <div className="ChartDiv">
-            <Chart data={chartData} />
+        ) : (
+          <div
+            style={{
+              width: "100%",
+              height:"40vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Spinner
+              variant="primary"
+              size="200px"
+              animation="border"
+              role="status"
+            >
+              <span style={{color:"black"}} className="visually-hidden">Loading...</span>
+            </Spinner>
           </div>
-        </div>
-
-        {/* <Slidecontent /> */}
-
-        {/* <div className="charts">
-          <div className="graph1">
-            <Chart />
-          </div>
-          <br />
-          <div className="graph1">
-            <Chart2 />
-          </div>
-        </div> */}
+        )}
       </div>
+
       <br />
 
       {/* <div
