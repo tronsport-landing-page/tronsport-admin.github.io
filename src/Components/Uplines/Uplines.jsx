@@ -28,28 +28,37 @@ function Uplines() {
   const FetchData = async (address) => {
     let temp_address = address;
     let TempArray = [];
+
+
     for await (const i of Array.from({ length: 5 }, (_, i) => i + 1)) {
       const id_to_num = await Utils.contract.users(temp_address).call();
+
+      if (!id_to_num) {
+        break;
+      }
       const data = await Promise.resolve(id_to_num);
-
-      // const id = data[1].toNumber()
-      const refId = data.referrerID.toNumber();
-
+      const refId = data?.referrerID?.toNumber();
       const refererAddressPromise = await Utils.contract.userList(refId).call();
-      const refererAddress = await Promise.resolve(refererAddressPromise);
-      if (temp_address != (await Hex_to_base58(refererAddress.toString()))) {
-        temp_address = await Hex_to_base58(refererAddress.toString());
+      const refererAddress = await Hex_to_base58(refererAddressPromise)
 
-        await currentLevel(temp_address).then((res) => {
-          TempArray.push({
+      await currentLevel(refererAddress).then((res) => {
+        setdata((e) => [
+          ...e,
+          {
             id: refId,
-            address: temp_address,
+            address: refererAddress,
             currentLevel: res,
-          });
-          // console.log(temp_address);
-          // setdata([{ id: refId, address: temp_address, currentLevel: res }]);
-          // setLoadingTable(false);
-        });
+          },
+        ]);
+      });
+      temp_address = refererAddress;
+
+      if (refId == 0) {
+        break;
+      }
+
+      if(LoadingTable){
+        setLoadingTable(false)
       }
     }
 
@@ -57,28 +66,15 @@ function Uplines() {
       TempArray = TempArray.filter((e) => e.id != 0);
     }
 
-    
-    setdata(TempArray);
-    setLoadingTable(false);
-
     return;
   };
 
   const currentLevel = async (address) => {
-    let currentLevel = 0;
-    for await (const level of Array.from({ length: 10 }, (_, i) => i + 1)) {
-      const checkLevel = await Utils.contract
-        .viewUserLevelExpired(address, level)
-        .call();
-      const currentTimestamp = await Promise.resolve(checkLevel);
-      if (
-        currentTimestamp.toNumber() < Date.now() &&
-        currentTimestamp.toNumber() != 0
-      ) {
-        ++currentLevel;
-      }
-    }
-    return currentLevel;
+    const checkLevelData = await Utils.contract
+      .getUserCurrentLevel(address)
+      .call();
+    const checkLevel = await Promise.resolve(checkLevelData);
+    return checkLevel?.toNumber();
   };
 
   // const ProccessTreeData = async (data, id, temp) => {
@@ -174,7 +170,7 @@ function Uplines() {
 
   return (
     <div className="Uplines">
-      <div className="headerWrapper" >
+      <div className="headerWrapper">
         <p className="header">Uplines</p>
       </div>
 
