@@ -153,6 +153,7 @@ function Partners() {
         }
       });
   };
+  
 
   const CONNECT_WALLET = async () => {
     try {
