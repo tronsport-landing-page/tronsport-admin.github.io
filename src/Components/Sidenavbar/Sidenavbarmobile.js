@@ -24,7 +24,6 @@ import UplineIconDark from "../../Assets/upline-dark.svg";
 import BurnIcon from "../../Assets/burn.svg";
 import BurnIconDark from "../../Assets/burn-dark.svg";
 
-
 function Sidenavbarmobile() {
   const [openMenu, setopenMenu] = useState(false);
 
@@ -54,6 +53,7 @@ function Sidenavbarmobile() {
               <ul className="sidebarlist">
                 <Link
                   className={VALIDROUTE("/") ? "Link-Active" : "Link"}
+                  onClick={() => dispatch(toogleMenu(!menu))}
                   to="/"
                   style={{
                     width: "240px !important",
@@ -91,6 +91,7 @@ function Sidenavbarmobile() {
 
                 <Link
                   className={VALIDROUTE("/partners") ? "Link-Active" : "Link"}
+                  onClick={() => dispatch(toogleMenu(!menu))}
                   to="/Partners"
                   style={{
                     width: "240px !important",
@@ -117,6 +118,7 @@ function Sidenavbarmobile() {
                 </Link>
                 <Link
                   className={VALIDROUTE("/uplines") ? "Link-Active" : "Link"}
+                  onClick={() => dispatch(toogleMenu(!menu))}
                   to="/Uplines"
                   style={{
                     width: "240px !important",
@@ -142,31 +144,44 @@ function Sidenavbarmobile() {
                   </li>
                 </Link>
                 <Link
-              className={VALIDROUTE("/lostprofits") ? "Link-Active" : "Link"}
-              to="/Lostprofits"
-              style={{
-                width: "240px !important",
-                textDecoration: "none",
-                color: "black",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <li
-                style={{ color: VALIDROUTE("/lostprofits") ? "white" : null }}
-                className="sidebaritems"
-              >
-                <span className="icon">
-                  {!VALIDROUTE("/lostprofits") ? (
-                    <img style={{marginLeft:"3px"}} width="22" src={BurnIconDark} />
-                  ) : (
-                    <img style={{marginLeft:"3px"}} width="22" src={BurnIcon} />
-                  )}
-                </span>
-                Lost profits
-              </li>
-            </Link>
+                  className={
+                    VALIDROUTE("/lostprofits") ? "Link-Active" : "Link"
+                  }
+                  onClick={() => dispatch(toogleMenu(!menu))}
+                  to="/Lostprofits"
+                  style={{
+                    width: "240px !important",
+                    textDecoration: "none",
+                    color: "black",
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <li
+                    style={{
+                      color: VALIDROUTE("/lostprofits") ? "white" : null,
+                    }}
+                    className="sidebaritems"
+                  >
+                    <span className="icon">
+                      {!VALIDROUTE("/lostprofits") ? (
+                        <img
+                          style={{ marginLeft: "3px" }}
+                          width="22"
+                          src={BurnIconDark}
+                        />
+                      ) : (
+                        <img
+                          style={{ marginLeft: "3px" }}
+                          width="22"
+                          src={BurnIcon}
+                        />
+                      )}
+                    </span>
+                    Lost profits
+                  </li>
+                </Link>
                 {/* <li
               style={{ color: VALIDROUTE("/promo") ? "white" : null }}
               className="sidebaritems"
@@ -180,8 +195,8 @@ function Sidenavbarmobile() {
             </div>
           </div>
           <Link
-            onClick={Logout}
             className={"Link"}
+            onClick={() => {Logout();dispatch(toogleMenu(!menu))}}
             to="/"
             style={{
               width: "240px !important",

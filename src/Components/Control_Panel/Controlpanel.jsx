@@ -40,7 +40,7 @@ function Controlpanel() {
 
   const [FOUNDATION_ADDRESS, setFOUNDATION_ADDRESS] = useState(TEMP_ADDRESS);
   const [LoadingLevels, setLoadingLevels] = useState(true);
-  const LEVEL_PRICE = [300, 600, 600];
+  const LEVEL_PRICE = [3, 6, 6];
 
   let Total = 0;
 
@@ -113,15 +113,13 @@ function Controlpanel() {
     try {
       Promise.all([
         Utils.contract.users(id).call(),
-        Utils.contract.getUserIndirectReferralCount(id).call(),
         FetchLevel(id),
       ]).then(async (values) => {
         let userData = values[0];
-        let indirectReferralData = values[1];
         let earning = userData.earning.toNumber() / 1000000;
         let directReferralCount =
           userData?.directReferralCount?.toNumber() || 0;
-        let indirectReferralCount = indirectReferralData?.toNumber() || 0;
+        let indirectReferralCount = userData?.indirectReferralCount?.toNumber() || 0;
 
         setcoinsCount(earning);
         setdirectPartners(directReferralCount);
@@ -418,8 +416,10 @@ function Controlpanel() {
 
   const [LevelsData, setLevelsData] = useState({});
 
-  const Buy = async (value, level) => {
-    if (level > 1 && level < 3) {
+  const Buy = async (level) => {
+    let value = LEVEL_PRICE[level-1]
+    
+    if (level > 1 && level <= 3) {
       const canUpgradeData = await Utils.contract.users(id).call();
       if (canUpgradeData?.directReferralCount < 5) {
         toast.error(
@@ -440,7 +440,7 @@ function Controlpanel() {
     return await Utils.contract
       .buyLevel(level)
       .send({
-        feeLimit: 100_000_000,
+        feeLimit: 200_000_000,
         callValue: 1000000 * value,
         shouldPollResponse: true,
       })
@@ -682,11 +682,6 @@ function Controlpanel() {
               <div
                 onClick={() =>
                   Buy(
-                    currentLevel == 0
-                      ? LEVEL_PRICE[0]
-                      : currentLevel == 3
-                      ? LEVEL_PRICE[2]
-                      : LEVEL_PRICE[currentLevel + 1],
                     currentLevel == 3 ? 3 : currentLevel + 1
                   )
                 }
@@ -696,13 +691,13 @@ function Controlpanel() {
               >
                 {/* Upgrade Now */}
                 {currentLevel == 0
-                  ? "Activate Now"
+                  ? `Activate Now (${LEVEL_PRICE[0]} TRX)`
                   : currentLevel == 3
-                  ? "Extend Now"
-                  : "Upgrade Now"}
+                  ? `Extend Now (${LEVEL_PRICE[2]} TRX)`
+                  : `Upgrade Now (${LEVEL_PRICE[currentLevel]} TRX)`}
               </div>
             </div>
-            <div className="ChartDiv">
+            <div  className="ChartDiv">
               <h2>Referals</h2>
               <Chart data={chartData} />
             </div>

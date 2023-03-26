@@ -24,8 +24,7 @@ const Table = ({ data, coinprice,LoadingTable }) => {
           <table>
             <tr>
               <th style={{minWidth:"50px"}}>Date</th>
-              <th style={{minWidth:"380px"}}>From whom</th>
-              <th style={{minWidth:"50px"}}>ID</th>
+              <th style={{minWidth:"380px"}}>Recieved From ID</th>
               <th style={{minWidth:"220px"}}>The amount of TRX</th>
               <th style={{minWidth:"50px"}}>USD</th>
             </tr>
@@ -33,9 +32,6 @@ const Table = ({ data, coinprice,LoadingTable }) => {
             {tableData.map((item, index) => (
               <tr>
                 <td className="tbval">{index + 1}</td>
-                <td className="tbval">
-                <a target="_blank" href={`https://tronscan.org/#/address/${item.address}`}>{item.address}</a>
-                </td>
                 <td className="tbval">{item.id}</td>
                 <td className="tbval">{item.coins}</td>
                 <td className="tbval">{item.coins * coinPrice.toFixed(4)}</td>

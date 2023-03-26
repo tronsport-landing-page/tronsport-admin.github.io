@@ -162,7 +162,7 @@ const Register = () => {
         await Utils.contract
           .regUser(refID)
           .send({
-            feeLimit: 100_000_000,
+            feeLimit: 200_000_000,
             callValue: 1000000 * BUY_AMOUNT,
             shouldPollResponse: true,
           })

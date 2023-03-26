@@ -7,7 +7,7 @@ function Levels({ Utils, address }) {
     return await Utils.contract
       .buyLevel(1)
       .send({
-        feeLimit: 100_000_000,
+        feeLimit: 200_000_000,
         callValue: 0,
         tokenId: 1000036,
         tokenValue: value,
