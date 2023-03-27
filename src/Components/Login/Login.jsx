@@ -48,7 +48,7 @@ const Login = () => {
   console.log(authStatus);
 
   useEffect(() => {
-    document.title = "Login|SmartGenie";
+    document.title = "Login|Tronsport";
 
     const checklogin = setInterval(async () => {
       if (window?.tronLink?.tronWeb) {
