@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cde19531.chunk.css",
+    "main.js": "/static/js/main.7fcb7ba5.chunk.js",
+    "main.js.map": "/static/js/main.7fcb7ba5.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ed26197b.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ed26197b.js.map",
+    "static/js/2.13b5890a.chunk.js": "/static/js/2.13b5890a.chunk.js",
+    "static/js/2.13b5890a.chunk.js.map": "/static/js/2.13b5890a.chunk.js.map",
+    "static/js/3.ca93c3cf.chunk.js": "/static/js/3.ca93c3cf.chunk.js",
+    "static/js/3.ca93c3cf.chunk.js.map": "/static/js/3.ca93c3cf.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.cde19531.chunk.css.map": "/static/css/main.cde19531.chunk.css.map",
+    "static/js/2.13b5890a.chunk.js.LICENSE.txt": "/static/js/2.13b5890a.chunk.js.LICENSE.txt",
+    "static/media/burn-dark.71b8150a.svg": "/static/media/burn-dark.71b8150a.svg",
+    "static/media/burn.f12a3152.svg": "/static/media/burn.f12a3152.svg",
+    "static/media/logimg.84960df3.jpg": "/static/media/logimg.84960df3.jpg",
+    "static/media/logm.9c996e3c.jpg": "/static/media/logm.9c996e3c.jpg",
+    "static/media/logo.5e80deeb.svg": "/static/media/logo.5e80deeb.svg",
+    "static/media/logo.fba3736c.png": "/static/media/logo.fba3736c.png",
+    "static/media/message.bc71e445.jpg": "/static/media/message.bc71e445.jpg",
+    "static/media/pocket1.7477cf2e.svg": "/static/media/pocket1.7477cf2e.svg",
+    "static/media/pocket2.ec5c2a99.svg": "/static/media/pocket2.ec5c2a99.svg",
+    "static/media/pocket3.31b85285.svg": "/static/media/pocket3.31b85285.svg",
+    "static/media/pocket4.7d78554e.svg": "/static/media/pocket4.7d78554e.svg",
+    "static/media/success.faee9f17.svg": "/static/media/success.faee9f17.svg",
+    "static/media/tree-dark.1c622895.svg": "/static/media/tree-dark.1c622895.svg",
+    "static/media/tree.171ad79c.svg": "/static/media/tree.171ad79c.svg",
+    "static/media/tronlink.e60d7b91.png": "/static/media/tronlink.e60d7b91.png",
+    "static/media/upline-dark.abcb06a7.svg": "/static/media/upline-dark.abcb06a7.svg",
+    "static/media/upline.213d8f43.svg": "/static/media/upline.213d8f43.svg",
+    "static/media/wallet-dark.124e3d39.svg": "/static/media/wallet-dark.124e3d39.svg",
+    "static/media/wallet.dd37420f.svg": "/static/media/wallet.dd37420f.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ed26197b.js",
+    "static/js/2.13b5890a.chunk.js",
+    "static/css/main.cde19531.chunk.css",
+    "static/js/main.7fcb7ba5.chunk.js"
+  ]
+}
