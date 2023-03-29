@@ -111,23 +111,23 @@ function Controlpanel() {
 
   const FetchData = async () => {
     try {
-      Promise.all([
-        Utils.contract.users(id).call(),
-        FetchLevel(id),
-      ]).then(async (values) => {
-        let userData = values[0];
-        let earning = userData.earning.toNumber() / 1000000;
-        let directReferralCount =
-          userData?.directReferralCount?.toNumber() || 0;
-        let indirectReferralCount = userData?.indirectReferralCount?.toNumber() || 0;
+      Promise.all([Utils.contract.users(id).call(), FetchLevel(id)]).then(
+        async (values) => {
+          let userData = values[0];
+          let earning = userData.earning.toNumber() / 1000000;
+          let directReferralCount =
+            userData?.directReferralCount?.toNumber() || 0;
+          let indirectReferralCount =
+            userData?.indirectReferralCount?.toNumber() || 0;
 
-        setcoinsCount(earning);
-        setdirectPartners(directReferralCount);
-        setindirectPartners(indirectReferralCount);
-        setLoadingLevels(false);
+          setcoinsCount(earning);
+          setdirectPartners(directReferralCount);
+          setindirectPartners(indirectReferralCount);
+          setLoadingLevels(false);
 
-        await GetChartData(id, indirectReferralCount);
-      });
+          await GetChartData(id, indirectReferralCount);
+        }
+      );
     } catch (e) {
       console.log(e);
       setLoadingLevels(false);
@@ -414,11 +414,11 @@ function Controlpanel() {
     }
   };
 
-  const [LevelsData, setLevelsData] = useState({});
+  const [LevelsData, setLevelsData] = useState([1, 2,3]);
 
   const Buy = async (level) => {
-    let value = LEVEL_PRICE[level-1]
-    
+    let value = LEVEL_PRICE[level - 1];
+
     if (level > 1 && level <= 3) {
       const canUpgradeData = await Utils.contract.users(id).call();
       if (canUpgradeData?.directReferralCount < 5) {
@@ -662,45 +662,43 @@ function Controlpanel() {
 
         {!LoadingLevels ? (
           <div className="LowerContainer">
-            <div className="PurchaseWrapper">
-              {currentLevel == 0 ? <h2>Expired</h2> : <h2>Active</h2>}
-              <p>Level {currentLevel}</p>
-
-              <div className="CostWrapper">
-                <h2>
-                  {currentLevel == 0
-                    ? LEVEL_PRICE[0]
-                    : LEVEL_PRICE[currentLevel - 1]}{" "}
-                  TRX
-                </h2>
-                {expiredDate > 0 ? (
-                  <p>Validity : {expiredDate} days left</p>
-                ) : (
-                  <p>Expired : {expiredDate} days ago</p>
-                )}
-              </div>
-              <div
-                onClick={() =>
-                  Buy(
-                    currentLevel == 3 ? 3 : currentLevel + 1
-                  )
-                }
-                className={`Button ${
-                  currentLevel == 0 ? "ButtonRed" : "ButtonActivated"
-                }`}
-              >
-                {/* Upgrade Now */}
-                {currentLevel == 0
-                  ? `Activate Now (${LEVEL_PRICE[0]} TRX)`
-                  : currentLevel == 3
-                  ? `Extend Now (${LEVEL_PRICE[2]} TRX)`
-                  : `Upgrade Now (${LEVEL_PRICE[currentLevel]} TRX)`}
-              </div>
-            </div>
-            <div  className="ChartDiv">
+            <div className="ChartDiv">
               <h2>Referals</h2>
               <Chart data={chartData} />
             </div>
+            {LevelsData.map((index,data) => (
+              <div className="PurchaseWrapper">
+                <h2>Level {index}</h2>
+                {currentLevel == 0 ? <p>Expired</p> : <p>Active</p>}
+
+                <div className="CostWrapper">
+                  <h2>
+                    {currentLevel == 0
+                      ? LEVEL_PRICE[0]
+                      : LEVEL_PRICE[currentLevel - 1]}{" "}
+                    TRX
+                  </h2>
+                  {expiredDate > 0 ? (
+                    <p>Validity : {expiredDate} days left</p>
+                  ) : (
+                    <p>Expired : {expiredDate} days ago</p>
+                  )}
+                </div>
+                <div
+                  onClick={() => Buy(currentLevel == 3 ? 3 : currentLevel + 1)}
+                  className={`Button ${
+                    currentLevel == 0 ? "ButtonRed" : "ButtonActivated"
+                  }`}
+                >
+                  {/* Upgrade Now */}
+                  {currentLevel == 0
+                    ? `Activate Now (${LEVEL_PRICE[0]} TRX)`
+                    : currentLevel == 3
+                    ? `Extend Now (${LEVEL_PRICE[2]} TRX)`
+                    : `Upgrade Now (${LEVEL_PRICE[currentLevel]} TRX)`}
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
           <div

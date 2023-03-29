@@ -135,7 +135,7 @@
 }
 
 .ChartDiv {
-  width: calc(70% - 3em);
+  width: calc(100%);
   height: auto;
   background-color: white;
   padding: 20px;
@@ -145,6 +145,7 @@
   font-size: 1.2em;
   font-weight: 500;
   color: #464040;
+  margin-block: 1em;
 }
 
 .ChartDiv h2{
@@ -160,6 +161,7 @@
   align-items: center;
   color: #404040;
   padding-block: 25px;
+  margin-bottom: 1em;
 }
 
 .PurchaseWrapper p{
@@ -318,7 +320,7 @@
 
   .LowerContainer{
     display: flex;
-    flex-direction: column-reverse;
+    /* flex-direction: column-reverse; */
     justify-content: center;
     align-items: center;
     font-size: 2.4em;
