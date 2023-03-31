@@ -10,9 +10,7 @@ import { getAuth, toogleAuth } from "./Components/Redux/Reducer/AuthReducer";
 
 const App = () => {
   const authStatus = useSelector(getAuth);
- 
-
-  
+ console.log("run");
   // useEffect(() => {
   //   if (authStatus == "LOGGEDOUT") {
   //     if (window.location.pathname != "/") {
