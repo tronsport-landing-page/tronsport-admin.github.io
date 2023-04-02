@@ -72,9 +72,8 @@ const Register = () => {
           loggedIn: window.tronWeb && window.tronWeb.ready,
         };
 
-        if (tronWebState.installed) {
+        if (tronWebState?.installed) {
           settronWeb(tronWebState);
-
           return resolve();
         }
 
@@ -127,7 +126,8 @@ const Register = () => {
       });
 
       await Utils.setTronWeb(window.tronWeb).then(async () => {
-        if (refId != null) {
+
+        if (refId) {
           // if (JSON.parse(refId) <= 9) {
           //   let CurrentIdLoad = await Utils.contract.currUserID().call();
           //   let CurrentId = await Promise.resolve(CurrentIdLoad);
@@ -144,7 +144,7 @@ const Register = () => {
         }
       });
     } catch (e) {
-      console.log(e);
+      console.error(e)
     }
   };
 
@@ -226,7 +226,7 @@ const Register = () => {
           <img src={Logo} />
         </div>
 
-        <div style={{ paddingInline: "20px" ,marginTop:"45px"}} className="Divider">
+        <div style={{ paddingInline: "20px", marginTop: "45px" }} className="Divider">
           Register
         </div>
         <div className="Inside-Form-Div">

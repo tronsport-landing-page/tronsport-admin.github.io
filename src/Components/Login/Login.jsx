@@ -244,7 +244,7 @@ const Login = () => {
         });
       });
 
-      await Utils.setTronWeb(window.tronWeb).then(async () => {
+      await Utils.setTronWeb(window?.tronWeb).then(async () => {
         // alert(id)
         await checkUser2();
         // alert(id);

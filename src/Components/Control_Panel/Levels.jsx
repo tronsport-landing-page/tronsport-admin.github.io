@@ -38,7 +38,7 @@ function Levels({ Utils, address }) {
               new Date(Date.now()).getTime()) /
             (1000 * 60 * 60 * 24),
           active: false,
-          disabled:level == 1 ? false:true
+          disabled: level == 1 ? false : true
         };
       } else if (
         currentTimestamp.toNumber() < Date.now() &&
@@ -51,7 +51,7 @@ function Levels({ Utils, address }) {
               new Date(Date.now()).getTime()) /
             (1000 * 60 * 60 * 24),
           active: true,
-          disabled:false
+          disabled: false
 
         };
       } else {
@@ -62,7 +62,7 @@ function Levels({ Utils, address }) {
               new Date(Date.now()).getTime()) /
             (1000 * 60 * 60 * 24),
           active: false,
-          disabled:true
+          disabled: true
         };
       }
     }
@@ -70,7 +70,7 @@ function Levels({ Utils, address }) {
     let TempActive = 0;
     for await (const i of Array.from({ length: 10 }, (_, i) => i + 1)) {
       if (Temp[`${i}`].active == true) {
-        TempActive = i+1;
+        TempActive = i + 1;
         Temp[`${TempActive}`].disabled = false;
 
       }
