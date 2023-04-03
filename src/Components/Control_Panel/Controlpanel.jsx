@@ -24,6 +24,8 @@ import Pocket4Icon from "../../Assets/pocket4.svg";
 
 const TEMP_ADDRESS = "TJrQX9SeYDPKVy9eKEViWGqDL2wFGUBaNJ";
 
+const BUY_ALERTS = { 2: "Level 2 can be bought only after 40 days and minimum direct referal should be 5", 3: "Level 3 can be bought only after 80 days and minimum direct referal should be 10" }
+
 function Controlpanel() {
   const { height, width } = useWindowDimensions();
   const previewId = useSelector(getPreviewModeId);
@@ -159,34 +161,39 @@ function Controlpanel() {
     });
   };
 
-  const FetchLevel = async (id) => {
-    const LevelData = await Utils.contract.getUserCurrentLevel(id).call();
-    let level = LevelData?.toNumber() || 0;
-    setcurrentLevel(level);
 
-    const convert = (x) => {
-      let data = { active: false, expires: 0 }
+
+
+  const FetchLevel = async (id) => {
+
+    // UTILITY FUNCTION
+    const convert = (x, canActivate, canExtend) => {
+      let data = { active: false, expires: 0, canActivate: canActivate, canExtend: canExtend }
+
       if (x == 0) {
         return data
       }
+
       data.expires = Math.round(
         (new Date(x * 1000).getTime() -
           new Date(Date.now()).getTime()) /
         (1000 * 60 * 60 * 24),
         0
       )
+
       if (new Date(x * 1000).getTime() <= new Date(Date.now()).getTime()) {
         data.active = false
-      }else{
+      } else {
         data.active = true
       }
       return data
     }
 
-    Promise.all([await Utils.contract.viewUserLevelExpired(id, 1).call(), await Utils.contract.viewUserLevelExpired(id, 2).call(), await Utils.contract.viewUserLevelExpired(id, 3).call()]).then(([level1, level2, level3]) => {
-      setLevelsData([convert(level1.toNumber()), convert(level2.toNumber()), convert(level3.toNumber())]);
+    Promise.all([Utils.contract.getUserCurrentLevel(id).call(), Utils.contract.getUserLevelsData(id).call()]).then(([currentLevel, levelsData]) => {
+      setcurrentLevel(currentLevel.toNumber() || 0)
+      let [level1, level2, level3, canActivate2, canActivate3, canExtend3] = levelsData;
+      setLevelsData([convert(level1.toNumber(), true, true), convert(level2.toNumber(), canActivate2, canActivate2), convert(level3.toNumber(), canActivate3, canExtend3)]);
     })
-
   };
 
   const getcurrentLevel = async (address) => {
@@ -208,127 +215,7 @@ function Controlpanel() {
     return currentLevel;
   };
 
-  // const FetchEarning = async (id, partners, coins) => {
-  //   return await Utils.contract
-  //     .viewUserReferral(id)
-  //     .call()
-  //     .then(async (items) => {
-  //       ++LEVEL;
 
-  //       if (LEVEL == MAX_LEVEL) {
-  //         setcoinsCount(coins);
-  //         setpartnersList(partners);
-  //         // console.log(coins, partners);
-  //         return coins;
-  //       }
-
-  //       let tempCoin = coins;
-  // for await (const item of items) {
-  //   let e = await Hex_to_base58(item);
-  //   if (e == undefined || !e) return;
-  //         if (LEVEL == 1) {
-  //           for await (const level of Array.from(
-  //             { length: 10 },
-  //             (_, i) => i + 1
-  //           )) {
-  //             if (level == 1 || level == 6) {
-  //               let expiration = (
-  //                 await Utils.contract.viewUserLevelExpired(e, level).call()
-  //               ).toNumber();
-
-  //               if (expiration != 0) {
-  //                 tempCoin +=
-  //                   (
-  //                     await Utils.contract.LEVEL_PRICE(level).call()
-  //                   ).toNumber() / 1000000;
-  //               }
-  //             }
-  //           }
-  //         } else if (LEVEL == 2) {
-  //           for await (const level of Array.from(
-  //             { length: 10 },
-  //             (_, i) => i + 1
-  //           )) {
-  //             if (level == 2 || level == 7) {
-  //               let expiration = (
-  //                 await Utils.contract.viewUserLevelExpired(e, level).call()
-  //               ).toNumber();
-
-  //               if (expiration != 0) {
-  //                 tempCoin +=
-  //                   (
-  //                     await Utils.contract.LEVEL_PRICE(level).call()
-  //                   ).toNumber() / 1000000;
-  //               }
-  //             }
-  //           }
-  //         } else if (LEVEL == 3) {
-  //           for await (const level of Array.from(
-  //             { length: 10 },
-  //             (_, i) => i + 1
-  //           )) {
-  //             if (level == 3 || level == 8) {
-  //               let expiration = (
-  //                 await Utils.contract.viewUserLevelExpired(e, level).call()
-  //               ).toNumber();
-
-  //               if (expiration != 0) {
-  //                 tempCoin +=
-  //                   (
-  //                     await Utils.contract.LEVEL_PRICE(level).call()
-  //                   ).toNumber() / 1000000;
-  //               }
-  //             }
-  //           }
-  //         } else if (LEVEL == 4) {
-  // for await (const level of Array.from(
-  //   { length: 10 },
-  //   (_, i) => i + 1
-  // )) {
-  //   if (level == 4 || level == 9) {
-  //     let expiration = (
-  //       await Utils.contract.viewUserLevelExpired(e, level).call()
-  //     ).toNumber();
-
-  //     if (expiration != 0) {
-  //       tempCoin +=
-  //         (
-  //           await Utils.contract.LEVEL_PRICE(level).call()
-  //         ).toNumber() / 1000000;
-  //     }
-  //   }
-  // }
-  //         } else if (LEVEL == 5) {
-  //           for await (const level of Array.from(
-  //             { length: 10 },
-  //             (_, i) => i + 1
-  //           )) {
-  //             if (level == 5 || level == 10) {
-  // let expiration = (
-  //   await Utils.contract.viewUserLevelExpired(e, level).call()
-  // ).toNumber();
-
-  // if (expiration != 0) {
-  //   tempCoin +=
-  //     (
-  //       await Utils.contract.LEVEL_PRICE(level).call()
-  //     ).toNumber() / 1000000;
-  // }
-  //             }
-  //           }
-  //         }
-
-  //         ++countLoading;
-  //         setpartnersList(
-  //           Array.from({ length: countLoading }, (_, i) => i + 1)
-  //         );
-  //         setcoinsCount(tempCoin);
-
-  //         partners.push(e);
-  //         await FetchEarning(e, partners, coins + tempCoin);
-  //       }
-  //     });
-  // };
 
   const ConverttoHexArray = async (items) => {
     let temp = [];
@@ -425,24 +312,63 @@ function Controlpanel() {
     }
   };
 
-  const [LevelsData, setLevelsData] = useState([{expires:0,active:false}]);
+  const [LevelsData, setLevelsData] = useState([{ expires: 0, active: false, canActivate: false, canExtend: false }]);
+
+
+  const checkCriteria = (level) => {
+    var isActive = LevelsData[level - 1]?.active
+    var isExtendable = LevelsData[level - 1]?.canExtend
+    var canActivate = LevelsData[level - 1]?.canActivate
+
+    // if(!canActivate)
+
+
+
+    if (level == 2) {
+      if (isActive) {
+        if (!isExtendable) {
+          toast.error(
+            `Level 2 can be only Extended:- \n 1) After 40 days of Purchase of Level 1 \n 2) Minimum 5 Direct Referals \n 3) Previous Levels must be Active`,
+            { position: "bottom-center", style: { marginTop: "80px" } }
+          );
+          return false
+        }
+      } else {
+        if (!canActivate) {
+          toast.error(
+            `Level 2 can be only Activated:- \n 1) After 40 days of Purchase of Level 1 \n 2) Minimum 5 Direct Referals \n 3) Previous Levels must be Active`,
+            { position: "bottom-center", style: { marginTop: "80px" } }
+          );
+          return false
+        }
+      }
+    } else if (level == 3) {
+      if (isActive) {
+        if (!isExtendable) {
+          toast.error(
+            `Level 3 can be only Extended:- \n 1) Minimum 20 Direct Referals \n 2) Previous Levels must be Active`,
+            { position: "bottom-center", style: { marginTop: "80px" } }
+          );
+          return false
+        }
+      } else {
+        if (!canActivate) {
+          toast.error(
+            `Level 3 can be only Activated:- \n 1) After 80 days of Purchase of Level 2 \n 2) Minimum 10 Direct Referals \n 3) Previous Levels must be Active`,
+            { position: "bottom-center", style: { marginTop: "80px" } }
+          );
+          return false
+        }
+      }
+    }
+
+    return true
+  }
 
   const Buy = async (level) => {
     let value = LEVEL_PRICE[level - 1];
 
-    if (level > 1 && level <= 3) {
-      const canUpgradeData = await Utils.contract.users(id).call();
-      if (canUpgradeData?.directReferralCount < 5) {
-        toast.error(
-          `Please Direct Refer Minimum 5 People in order to Upgrade`,
-          {
-            position: "bottom-center",
-            // style: { marginTop: "80px" },
-          }
-        );
-        return;
-      }
-    }
+    if (!checkCriteria(level)) return
 
     const buytoast = toast.loading(
       "Waiting for Transaction Confirmation!! Data will get updated automatically",
@@ -679,39 +605,37 @@ function Controlpanel() {
             </div>
 
 
-            {LevelsData.map((data,index) => (
+            {LevelsData.map((data, index) => (
               <div key={index} className="PurchaseWrapper">
-                <h2>Level {index+1}</h2>
-                {data?.expires == 0 ? <p style={{color:"#f65e72"}} >Inactive</p> :
-                data?.active ? 
-                <p>Active</p>:<p style={{color:"#f65e72"}} >Inactive</p>}
+                <h2>Level {index + 1}</h2>
+                {data?.expires == 0 ? <p style={{ color: "#f65e72" }} >Inactive</p> :
+                  data?.active ?
+                    <p>Active</p> : <p style={{ color: "#f65e72" }} >Expired</p>}
 
                 <div className="CostWrapper">
                   <h2>
-                    {currentLevel == 0
-                      ? LEVEL_PRICE[0]
-                      : LEVEL_PRICE[currentLevel - 1]}{" "}
+                    {LEVEL_PRICE[index]}
                     TRX
                   </h2>
                   {
                     data?.expires != 0 && (
-                      data?.expires > 0 ? (
+                      data?.expires >= 0 ? (
                         <p>Validity : {data?.expires} days left</p>
                       ) : (
                         <p>Expired : {data?.expires} days ago</p>
                       ))}
                 </div>
                 <div
-                  onClick={() => Buy(currentLevel == 3 ? 3 : currentLevel + 1)}
-                  className={`Button ${currentLevel == 0 ? "ButtonRed" : "ButtonActivated"
+                  onClick={() => Buy(index + 1)}
+                  className={`Button ${data?.expires == 0 ? "ButtonRed" : "ButtonActivated"
                     }`}
                 >
                   {/* Upgrade Now */}
-                  {currentLevel == 0
-                    ? `Activate Now (${LEVEL_PRICE[0]} TRX)`
-                    : currentLevel == 3
-                      ? `Extend Now (${LEVEL_PRICE[2]} TRX)`
-                      : `Upgrade Now (${LEVEL_PRICE[currentLevel]} TRX)`}
+                  {data?.expires == 0
+                    ? `Activate Now`
+                    : data?.expires < 0
+                      ? `Reactivate Now`
+                      : `Extend Now`}
                 </div>
               </div>
             ))}
@@ -745,7 +669,7 @@ function Controlpanel() {
 
       <br />
 
-      
+
     </div>
   );
 }

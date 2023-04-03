@@ -1,4 +1,4 @@
-const contractAddress = "TXC8HXcoCDAyyWwuXJRVhdHc5pF2EmscPE"
+const contractAddress = "TLN8FxUVjTrmCrhBxEDZzKgZTHeVdeWGrW"
 // "TJ1spKFfV3As7AhSpJqB6d8E82tAp37JXi"
 
 // "TLHbZrdCGXn9KLvb6qvygYWHJZ7ucLyRy8" Version 1 (MAIN NET)
