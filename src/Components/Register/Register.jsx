@@ -138,6 +138,7 @@ const Register = () => {
           await Buy(refId);
 
         } else {
+          setLoader(true)
           let CurrentIdLoad = await Utils.contract.currUserID().call();
           let CurrentId = await Promise.resolve(CurrentIdLoad);
           await Buy(JSON.parse(CurrentId.toString()));
@@ -149,6 +150,7 @@ const Register = () => {
   };
 
   const Buy = async (refID) => {
+    setLoader(true);
 
     window.tronWeb.defaultAddress = {
       hex: window.tronWeb?.address?.toHex(id),
@@ -157,8 +159,8 @@ const Register = () => {
 
     return await Utils.setTronWeb(window.tronWeb).then(async () => {
       const toastId = toast.loading("Waiting for transaction confirmation");
-      setLoader(true);
       try {
+      
         await Utils.contract
           .regUser(refID)
           .send({
@@ -188,7 +190,7 @@ const Register = () => {
   };
 
   const checkUser = async (toastId) => {
-    console.log(window.tronWeb);
+
     await Utils.setTronWeb(window.tronWeb).then(async () => {
       const LoadUserExist = await Utils.contract.users(id).call();
       const userexist = await Promise.resolve(LoadUserExist);
