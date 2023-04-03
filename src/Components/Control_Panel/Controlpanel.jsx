@@ -24,7 +24,7 @@ import Pocket4Icon from "../../Assets/pocket4.svg";
 
 const TEMP_ADDRESS = "TJrQX9SeYDPKVy9eKEViWGqDL2wFGUBaNJ";
 
-const BUY_ALERTS = { 2: "Level 2 can be bought only after 40 days and minimum direct referal should be 5", 3: "Level 3 can be bought only after 80 days and minimum direct referal should be 10" }
+
 
 function Controlpanel() {
   const { height, width } = useWindowDimensions();
@@ -228,6 +228,7 @@ function Controlpanel() {
 
   const CONNECT_WALLET = async () => {
     try {
+
       new Promise((resolve) => {
         const tronWebState = {
           installed: !!window.tronWeb,
@@ -329,7 +330,7 @@ function Controlpanel() {
         if (!isExtendable) {
           toast.error(
             `Level 2 can be only Extended:- \n 1) After 40 days of Purchase of Level 1 \n 2) Minimum 5 Direct Referals \n 3) Previous Levels must be Active`,
-            { position: "bottom-center", style: { marginTop: "80px" } }
+            { position: "bottom-center" }
           );
           return false
         }
@@ -337,7 +338,7 @@ function Controlpanel() {
         if (!canActivate) {
           toast.error(
             `Level 2 can be only Activated:- \n 1) After 40 days of Purchase of Level 1 \n 2) Minimum 5 Direct Referals \n 3) Previous Levels must be Active`,
-            { position: "bottom-center", style: { marginTop: "80px" } }
+            { position: "bottom-center" }
           );
           return false
         }
@@ -347,7 +348,7 @@ function Controlpanel() {
         if (!isExtendable) {
           toast.error(
             `Level 3 can be only Extended:- \n 1) Minimum 20 Direct Referals \n 2) Previous Levels must be Active`,
-            { position: "bottom-center", style: { marginTop: "80px" } }
+            { position: "bottom-center" }
           );
           return false
         }
@@ -355,7 +356,7 @@ function Controlpanel() {
         if (!canActivate) {
           toast.error(
             `Level 3 can be only Activated:- \n 1) After 80 days of Purchase of Level 2 \n 2) Minimum 10 Direct Referals \n 3) Previous Levels must be Active`,
-            { position: "bottom-center", style: { marginTop: "80px" } }
+            { position: "bottom-center" }
           );
           return false
         }
@@ -366,6 +367,8 @@ function Controlpanel() {
   }
 
   const Buy = async (level) => {
+    if (previewId) { return }
+
     let value = LEVEL_PRICE[level - 1];
 
     if (!checkCriteria(level)) return
@@ -626,8 +629,9 @@ function Controlpanel() {
                       ))}
                 </div>
                 <div
+                  style={{opacity:previewId && 0.5,cursor:previewId && "not-allowed"}}
                   onClick={() => Buy(index + 1)}
-                  className={`Button ${data?.expires == 0 ? "ButtonRed" : "ButtonActivated"
+                  className={`Button ${data?.expires <= 0 ? "ButtonRed" : "ButtonActivated"
                     }`}
                 >
                   {/* Upgrade Now */}
