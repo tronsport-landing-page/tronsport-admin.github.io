@@ -1,10 +1,6 @@
-const contractAddress = "TLN8FxUVjTrmCrhBxEDZzKgZTHeVdeWGrW"
-// "TJ1spKFfV3As7AhSpJqB6d8E82tAp37JXi"
+const contractAddress = "TXYKxSMCT2P2c9PuPa8ZjC3dw6AGicDopx"
 
-// "TLHbZrdCGXn9KLvb6qvygYWHJZ7ucLyRy8" Version 1 (MAIN NET)
-// "TVtd6PSWS9qfW9RBYkwinoSAVD56zAzSMK"; Version = 3 (TEST)
-// "TP3knTX2vSsPxpffb5Fe8XMgMCuqhXZdms" Version = 2(TEST)
-// 'TLoV6Qr7tqDnHi641jG2hXZLQYUd4RTTAs' Version = 1(TEST)
+// "TXYKxSMCT2P2c9PuPa8ZjC3dw6AGicDopx" ; Version = 1 (TEST)
 
 const utils = {
     tronWeb: false,

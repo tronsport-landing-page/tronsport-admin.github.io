@@ -42,7 +42,7 @@ function Controlpanel() {
 
   const [FOUNDATION_ADDRESS, setFOUNDATION_ADDRESS] = useState(TEMP_ADDRESS);
   const [LoadingLevels, setLoadingLevels] = useState(true);
-  const LEVEL_PRICE = [3, 6, 6];
+  const LEVEL_PRICE = [200, 1000, 5000];
 
   let Total = 0;
 
@@ -385,7 +385,7 @@ function Controlpanel() {
         shouldPollResponse: true,
       })
       .then(async (res) => {
-        console.log(res);
+
         await FetchData();
         toast.success(
           `Transaction confirmed successfully!! Level ${level} bought successfully`,

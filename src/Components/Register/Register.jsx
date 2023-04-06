@@ -32,7 +32,7 @@ const Register = () => {
   const [Loader, setLoader] = useState(false);
 
 
-  const BUY_AMOUNT = 3;
+  const BUY_AMOUNT = 200;
 
   const FOUNDATION_ADDRESS = "TG31Eya5GywMYV2rwq3rwGbep4eoykWREP";
 
@@ -50,7 +50,7 @@ const Register = () => {
   let id = window?.tronLink?.tronWeb?.defaultAddress?.base58;
 
   useEffect(() => {
-    document.title = "Smart Genie|Register";
+    document.title = "Tronsport|Register";
     if (window.location?.pathname?.split("/")[2]) {
       setrefId(window.location?.pathname?.split("/")[2]);
     }
@@ -256,7 +256,7 @@ const Register = () => {
                 {Loader ? (
                   <p>Transction Loading...</p>
                 ) : (
-                  <p>Purchase Level 1 for 300TRX</p>
+                  <p>Purchase Level 1 for 200TRX</p>
                 )}
               </button>
             </div>
