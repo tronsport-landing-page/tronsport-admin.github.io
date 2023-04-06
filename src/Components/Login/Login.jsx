@@ -45,7 +45,6 @@ const Login = () => {
 
   let TOKEN = localStorage.getItem("access_token");
 
-  console.log(authStatus);
 
   useEffect(() => {
     document.title = "Login|Tronsport";
@@ -116,6 +115,7 @@ const Login = () => {
       // }
     } catch (e) {
       console.log(e, "yes");
+      CONNECT_WALLET()
       setLoader(false);
     }
   };
