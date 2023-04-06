@@ -5,6 +5,7 @@ import "../App.css";
 import Login from "../Components/Login/Login";
 import { getAuth } from "../Components/Redux/Reducer/AuthReducer";
 import Register from "../Components/Register/Register";
+import { Toaster } from "react-hot-toast";
 
 function Auth() {
   const authStatus = useSelector(getAuth);
@@ -23,6 +24,8 @@ function Auth() {
 
   return (
     <div>
+            <Toaster/>
+
       <Route component={Login} exact path="/" />
       <Route component={Register} path="/register" />
 

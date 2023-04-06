@@ -27,7 +27,7 @@ const App = () => {
 
   return (
       <BrowserRouter basename={process.env.PUBLIC_URL} >
-      <Toaster/>
+      {/* <Toaster/> */}
         {/* {access ? <Redirect to={"/"} /> : <Redirect to={"/login"} />} */}
         <Route
           to={"/"}
