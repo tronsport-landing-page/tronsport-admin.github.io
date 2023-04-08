@@ -1,6 +1,6 @@
-const contractAddress = "TXYKxSMCT2P2c9PuPa8ZjC3dw6AGicDopx"
+const contractAddress = "TCYusnqzTJZkZJaDCVVz4pbemugN4CbMv7"
 
-// "TXYKxSMCT2P2c9PuPa8ZjC3dw6AGicDopx" ; Version = 1 (TEST)
+// "TCYusnqzTJZkZJaDCVVz4pbemugN4CbMv7" ; Version = 1 (TEST)
 
 const utils = {
     tronWeb: false,
