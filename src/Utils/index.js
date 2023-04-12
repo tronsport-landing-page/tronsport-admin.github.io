@@ -1,4 +1,4 @@
-const contractAddress = "TPo2EexpvUey8dJ9tcpXvQ5SPCKekyZ6Dm"
+const contractAddress = "THAJBmLttAEDwTWJD51Xprkxs7ad2bvET7"
 
 // "TCYusnqzTJZkZJaDCVVz4pbemugN4CbMv7" ; Version = 1 (TEST)
 
