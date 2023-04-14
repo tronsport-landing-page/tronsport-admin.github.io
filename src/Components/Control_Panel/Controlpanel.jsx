@@ -76,7 +76,7 @@ function Controlpanel() {
 
     for await (const address of data) {
       const joinedData = await Utils.contract.users(address).call();
-      console.log(joinedData);
+      // console.log(joinedData);
 
       let joined = await Promise.resolve(joinedData.joined.toNumber());
 
@@ -106,7 +106,7 @@ function Controlpanel() {
       data: graphData,
     };
 
-    // console.log(labels, graphData);
+    console.log(labels, graphData);
 
     return resData;
   };
@@ -122,44 +122,56 @@ function Controlpanel() {
           let indirectReferralCount =
             userData?.indirectReferralCount?.toNumber() || 0;
 
+          let indirectReferralLength =
+            userData?.indirectReferralLength?.toNumber() || 0;
+
+
           setcoinsCount(earning);
           setdirectPartners(directReferralCount);
           setindirectPartners(indirectReferralCount);
           setLoadingLevels(false);
 
-          await GetChartData(id, indirectReferralCount);
+          await GetChartData(id, indirectReferralLength);
         }
       );
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       setLoadingLevels(false);
     }
   };
 
-  const GetChartData = async (id, indirectCount) => {
-    const directPartners = await Utils.contract.viewUserReferral(id).call();
+  const GetChartData = (id, indirectCount) => {
 
+    Promise.all([Utils.contract.viewUserReferral(id).call(), indirectPartnersFetch(indirectCount)]).then(async([directPartners, indirectPartners]) => {
+      let items = [...directPartners, ...indirectPartners];
+      let newArray = [];
+      for await (let item of items) {
+        let x = await Hex_to_base58(item);
+        newArray.push(x);
+      }
+      await ProccessRefralGraphData(newArray).then(async (res) => {
+        setchartData(res);
+      });
+    })
+
+
+  };
+
+  const indirectPartnersFetch = async (indirectCount) => {
     let indirectPartnersList = [];
 
-    for (let index = 0; index < indirectCount; index++) {
-      // const element = array[index];
+    var TempindirectPartnersList = Array.from(Array(indirectCount), (_, index) => index);
+
+    for await (let index of TempindirectPartnersList) {
       let partnerAddress = await Utils.contract
         .viewUserIndirectReferral(id, index)
         .call();
+      // console.log(partnerAddress);
       indirectPartnersList.push(partnerAddress);
     }
 
-    let items = [...directPartners, ...indirectPartnersList];
-    let newArray = [];
-    for await (let item of items) {
-      let x = await Hex_to_base58(item);
-      newArray.push(x);
-    }
-
-    await ProccessRefralGraphData(newArray).then(async (res) => {
-      setchartData(res);
-    });
-  };
+    return indirectPartnersList
+  }
 
 
 
@@ -304,12 +316,12 @@ function Controlpanel() {
         try {
           await FetchData();
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       });
     } catch (e) {
       CONNECT_WALLET();
-      console.log(e);
+      // console.log(e);
     }
   };
 
@@ -404,9 +416,9 @@ function Controlpanel() {
         }
 
         // Cannot find result in solidity node
-        console.log(err);
+        // console.log(err);
         await FetchData();
-        console.log(err);
+        // console.log(err);
         toast.remove(buytoast);
 
         if (err.error == "Cannot find result in solidity node") {
@@ -428,7 +440,7 @@ function Controlpanel() {
         .viewUserLevelExpired(address, level)
         .call();
       const currentTimestamp = await Promise.resolve(checkLevel);
-      console.log(currentTimestamp.toNumber() * 1000, Date.now());
+      // console.log(currentTimestamp.toNumber() * 1000, Date.now());
       if (
         Date.now() > currentTimestamp.toNumber() * 1000 &&
         currentTimestamp.toNumber() * 1000 != 0
@@ -487,7 +499,7 @@ function Controlpanel() {
       }
     }
 
-    console.log(Temp);
+    // console.log(Temp);
 
     return Temp;
   };
@@ -629,7 +641,7 @@ function Controlpanel() {
                       ))}
                 </div>
                 <div
-                  style={{opacity:previewId && 0.5,cursor:previewId && "not-allowed"}}
+                  style={{ opacity: previewId && 0.5, cursor: previewId && "not-allowed" }}
                   onClick={() => Buy(index + 1)}
                   className={`Button ${data?.expires <= 0 ? "ButtonRed" : "ButtonActivated"
                     }`}
