@@ -349,7 +349,7 @@ function Controlpanel() {
       } else {
         if (!canActivate) {
           toast.error(
-            `Level 2 can be only Activated:- \n 1) After 40 days of Purchase of Level 1 \n 2) Minimum 5 Direct Referals \n 3) Previous Levels must be Active`,
+            `Level 2 can be only Activated:- \n 1) After 61 days of Purchase of Level 1 \n 2) Minimum 5 Direct Referals \n 3) Previous Levels must be Active`,
             { position: "bottom-center" }
           );
           return false
@@ -367,7 +367,7 @@ function Controlpanel() {
       } else {
         if (!canActivate) {
           toast.error(
-            `Level 3 can be only Activated:- \n 1) After 80 days of Purchase of Level 2 \n 2) Minimum 10 Direct Referals \n 3) Previous Levels must be Active`,
+            `Level 3 can be only Activated:- \n 1) After 61 days of Purchase of Level 2 \n 2) Minimum 10 Direct Referals \n 3) Previous Levels must be Active`,
             { position: "bottom-center" }
           );
           return false
