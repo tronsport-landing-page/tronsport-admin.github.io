@@ -25,6 +25,8 @@ import { FaBullseye } from "react-icons/fa";
 import { Hex_to_base58 } from "../../Utils/Converter";
 import { tooglePreviewModeId } from "../Redux/Reducer/PreviewMode";
 import UserId, { toogleuserId } from "../Redux/Reducer/UserId";
+import { getuserId } from "../Redux/Reducer/UserId";
+
 
 const TEMP_ADDRESS = "TG31Eya5GywMYV2rwq3rwGbep4eoykWREP";
 
@@ -38,6 +40,10 @@ const Login = () => {
   const [loginId, setloginId] = useState("");
   const [previewId, setpreviewId] = useState("");
   const [Loader, setLoader] = useState(false);
+
+
+  let walletId = window?.tronLink?.tronWeb?.defaultAddress?.base58;
+
 
   const [FOUNDATION_ADDRESS, setFOUNDATION_ADDRESS] = useState(TEMP_ADDRESS);
 
@@ -65,9 +71,17 @@ const Login = () => {
         return toast.error("Please enter valid RefId/address");
       }
 
-      setLoader(true);
       // if string is address
+      if (previewId == 1 && walletId != "TKjPHnjv9YfgkzMVhH1xPzi3BvRguBXwfU") {
+        toast.error("Access Denied")
+        return
+      }
+      setLoader(true);
+
+
+
       if (/[a-zA-Z]/.test(previewId)) {
+
         const LoadUserExist = await Utils.contract.users(previewId).call();
 
         const userexist = await Promise.resolve(LoadUserExist);
@@ -326,18 +340,18 @@ const Login = () => {
               />
             </Form.Group>
 
-              <button
-                onClick={PreviewMode}
-                disabled={Loader}
-                style={{ opacity: Loader ? 0.5 : 1 }}
-                className="Button"
-              >
-                {Loader ? (
-                  <p>Loading (Please wait)</p>
-                ) : (
-                  <p>Enter App (Preview Mode)</p>
-                )}
-              </button>
+            <button
+              onClick={PreviewMode}
+              disabled={Loader}
+              style={{ opacity: Loader ? 0.5 : 1 }}
+              className="Button"
+            >
+              {Loader ? (
+                <p>Loading (Please wait)</p>
+              ) : (
+                <p>Enter App (Preview Mode)</p>
+              )}
+            </button>
           </Form>
         </div>
       </div>

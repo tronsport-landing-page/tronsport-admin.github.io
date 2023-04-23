@@ -222,7 +222,9 @@ function Partners() {
         });
       }
 
-      Promise.all([FetchPayments(walletId), FetchTree(walletId)]);
+      await FetchTree(walletId).then(async ()=>{
+        await FetchPayments(walletId)
+      })
     } catch (e) {
       CONNECT_WALLET();
       console.log(e);
