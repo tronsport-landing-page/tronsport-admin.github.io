@@ -73,7 +73,7 @@ const Login = () => {
 
       // if string is address
       if (previewId == 1 && walletId != "TKjPHnjv9YfgkzMVhH1xPzi3BvRguBXwfU") {
-        toast.error("Access Denied")
+        toast.error("Invalid Request")
         return
       }
       setLoader(true);
